@@ -1,0 +1,13 @@
+{
+  "zonas": {"SA": "Arabia Saudí", "AE": "Emiratos", "": "Mundial"},
+  "relacionadas_en": ["SA", "AE"],
+  "palabras": [
+    "creatine", "creatine gummies", "magnesium", "magnesium glycinate", "collagen", "ashwagandha",
+    "lion's mane", "mushroom coffee", "berberine", "colostrum", "electrolytes", "probiotics",
+    "shilajit", "sea moss", "NAD", "GLP-1 supplement", "inositol", "apple cider vinegar gummies",
+    "biotin", "melatonin", "omega 3", "vitamin d", "iron supplement", "zinc", "protein powder",
+    "greens powder", "beef liver", "l-theanine", "glutathione", "saffron supplement",
+    "menopause supplement", "prenatal vitamins", "kids vitamins", "hair vitamins", "gummies",
+    "كرياتين", "مغنيسيوم", "كولاجين", "فيتامين د", "اشواغندا", "جلوتاثيون", "بروتين"
+  ]
+}
