@@ -4,6 +4,7 @@ Uso:
   python radar.py tiendas     -> foto diaria de catálogo, precios, stock y ranking de ventas de las tiendas Shopify
   python radar.py tendencias  -> Google Trends (Arabia Saudí, Emiratos y mundial) de palabras.json
   python radar.py informe     -> escribe docs/informe.md (lo que lee Claude) y docs/index.html
+  python radar.py vigilar     -> cada hora: productos nuevos en las tiendas + email de aviso
   python radar.py todo        -> tiendas + informe + Google Trends de 2-3 países (rotan cada 6 días)
 """
 import json, re, sqlite3, sys, time, html, datetime as dt
@@ -24,7 +25,7 @@ RUIDO = re.compile(r"gift ?card|insurance|shipping protection|order protection|\
                    r"\bhoodie|\bhat\b|\bcap\b|tote|shaker|frother|bottle opener|sticker|\bmug\b|cat toy|hidden|test\b|"
                    r"upsell|digital upgrade|cashback|e-?book|\bbook\b", re.I)
 INGREDIENTES = [
-    ('Creatina', r"creatin"), ('Magnesio', r"magnesi"), ('Colágeno', r"collagen"), ('Ashwagandha', r"ashwagandha"),
+    ('Multivitamínico', r"\bmulti\b(?!.?collagen)|multivitamin"), ('Creatina', r"creatin"), ('Magnesio', r"magnesi"), ('Colágeno', r"collagen"), ('Ashwagandha', r"ashwagandha"),
     ('Setas funcionales', r"lion.?s mane|reishi|cordyceps|chaga|turkey tail|mushroom"), ('Berberina', r"berberin"),
     ('Calostro', r"colostrum"), ('Electrolitos', r"electrolyt|hydration"), ('Probióticos / digestión', r"probiotic|prebiotic|\bgut\b|digest|bloat"),
     ('Shilajit', r"shilajit"), ('Musgo marino', r"sea ?moss"), ('NAD / NMN', r"\bnad\+?|\bnmn\b"), ('GLP-1 / saciedad', r"glp-?1|appetite|satiety"),
@@ -81,6 +82,8 @@ def db():
       primary key(fecha, palabra, zona, consulta));
     create table if not exists tendencias_log(fecha text, palabra text, zona text, error text,
       primary key(fecha, palabra, zona));
+    create table if not exists avisos(tienda text, pid text, visto text, precio real, enviado text,
+      primary key(tienda, pid));
     """)
     return c
 
@@ -127,6 +130,25 @@ def shopify_ranking(d, handles):
     return {h: i + 1 for i, h in enumerate(orden)}
 
 
+def guardar_producto(c, d, p):
+    c.execute("""insert into productos values(?,?,?,?,?,?,?,?,?,?,?,?)
+      on conflict(tienda,pid) do update set titulo=excluded.titulo, tipo=excluded.tipo, tags=excluded.tags,
+      url=excluded.url, imagen=excluded.imagen, publicado=excluded.publicado, ultima_vez=excluded.ultima_vez""",
+              (d, p['pid'], p['handle'], p['titulo'], p['tipo'], p['tags'], p['url'], p['imagen'],
+               p['creado'], p['publicado'], HOY, HOY))
+
+
+def apuntar_nuevos(c, d, ps):
+    """Productos que la tienda no tenía. Una tienda recién añadida no cuenta: avisaría de todo su catálogo."""
+    conocidos = {r[0] for r in c.execute("select pid from productos where tienda=?", (d,))}
+    if not conocidos: return []
+    ahora = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M')
+    nuevos = [p for p in ps if p['pid'] not in conocidos]
+    for p in nuevos:
+        c.execute("insert or ignore into avisos(tienda, pid, visto, precio) values(?,?,?,?)", (d, p['pid'], ahora, p['precio']))
+    return nuevos
+
+
 def tiendas(solo=None):
     c = db()
     lista = json.loads((BASE / 'tiendas.json').read_text(encoding='utf-8'))
@@ -136,12 +158,9 @@ def tiendas(solo=None):
         try:
             ps = shopify_catalogo(d)
             rk = shopify_ranking(d, {p['handle'] for p in ps}) if ps else {}
+            apuntar_nuevos(c, d, ps)
             for p in ps:
-                c.execute("""insert into productos values(?,?,?,?,?,?,?,?,?,?,?,?)
-                  on conflict(tienda,pid) do update set titulo=excluded.titulo, tipo=excluded.tipo, tags=excluded.tags,
-                  url=excluded.url, imagen=excluded.imagen, publicado=excluded.publicado, ultima_vez=excluded.ultima_vez""",
-                          (d, p['pid'], p['handle'], p['titulo'], p['tipo'], p['tags'], p['url'], p['imagen'],
-                           p['creado'], p['publicado'], HOY, HOY))
+                guardar_producto(c, d, p)
                 c.execute("insert or replace into fotos values(?,?,?,?,?,?,?,?)",
                           (HOY, d, p['pid'], p['precio'], p['precio_tachado'], p['disponibles'], p['variantes'],
                            rk.get(p['handle'])))
@@ -152,6 +171,74 @@ def tiendas(solo=None):
             print(f"{d:28} ERROR {e!r}")
         c.commit()
     c.close()
+    enviar_avisos()
+
+
+def vigilar():
+    """Cada hora: solo mira si las tiendas han sacado productos nuevos, y avisa por email."""
+    c = db()
+    for t in json.loads((BASE / 'tiendas.json').read_text(encoding='utf-8')):
+        d = t['dominio']
+        try:
+            ps = shopify_catalogo(d)
+        except Exception as e:
+            print(f"{d:28} ERROR {e!r}"); continue
+        nuevos = apuntar_nuevos(c, d, ps)
+        for p in nuevos: guardar_producto(c, d, p)
+        c.commit()
+        if nuevos: print(f"{d:28} {len(nuevos)} nuevos: " + ' | '.join(p['titulo'] for p in nuevos))
+    c.close()
+    enviar_avisos()
+
+
+# ---------- Avisos por email ----------
+def enviar_avisos():
+    import os, smtplib
+    from email.mime.text import MIMEText
+    c = db()
+    filas = c.execute("""select a.tienda, a.pid, a.visto, a.precio, p.titulo, p.tipo, p.url, p.imagen
+                         from avisos a join productos p using(tienda, pid) where a.enviado is null order by a.visto""").fetchall()
+    usuario, clave, para = (os.environ.get(k) for k in ('GMAIL_USER', 'GMAIL_APP_PASSWORD', 'AVISO_PARA'))
+    if not filas or not (usuario and clave and para):
+        if filas: print(f"{len(filas)} productos nuevos sin avisar: faltan GMAIL_USER, GMAIL_APP_PASSWORD o AVISO_PARA")
+        c.close(); return
+    pais = {t['dominio']: t['pais'] for t in json.loads((BASE / 'tiendas.json').read_text(encoding='utf-8'))}
+    mon = {'US': '$', 'UK': '£', 'EU': '€'}
+    tarjetas = []
+    for t, pid, visto, pr, tit, tipo, url, img in filas[:40]:
+        txt = f"{tit} {tipo}"
+        extra = ' · '.join(etiquetas(txt, INGREDIENTES) + etiquetas(txt, FORMATOS))
+        precio = f"{mon.get(pais.get(t), '')}{pr:.2f}" if pr is not None else ''
+        tarjetas.append(f"""<tr><td style="padding:12px 0;border-bottom:1px solid #eee;width:96px;vertical-align:top">
+          <a href="{html.escape(url)}"><img src="{html.escape(miniatura(img) or '')}" width="84" height="84" style="border-radius:10px;object-fit:cover;display:block;background:#f6f0f2" alt=""></a></td>
+          <td style="padding:12px 0 12px 14px;border-bottom:1px solid #eee;vertical-align:top;font:14px/1.45 Arial,sans-serif;color:#1d1b1b">
+          <a href="{html.escape(url)}" style="color:#AD182C;font-weight:bold;font-size:15px;text-decoration:none">{html.escape(tit)}</a><br>
+          <b>{html.escape(t)}</b>{' · ' + precio if precio else ''}<br>
+          <span style="color:#6b6566">{html.escape(extra) or 'Sin ingrediente reconocido'}</span><br>
+          <a href="{html.escape(url)}" style="color:#AD182C">Ver el producto →</a></td></tr>""")
+    resto = f"<p style='font:13px Arial;color:#6b6566'>Y {len(filas) - 40} más en el panel.</p>" if len(filas) > 40 else ''
+    cuerpo = f"""<div style="max-width:620px;margin:0 auto;font:14px Arial,sans-serif">
+      <div style="background:#AD182C;color:#fff;padding:16px 20px;border-radius:12px 12px 0 0;font-size:18px;font-weight:bold">
+      Radar Livezy · {len(filas)} producto{'s' if len(filas) > 1 else ''} nuevo{'s' if len(filas) > 1 else ''}</div>
+      <div style="padding:4px 20px 16px;border:1px solid #eee;border-top:0;border-radius:0 0 12px 12px">
+      <table cellpadding="0" cellspacing="0" width="100%">{''.join(tarjetas)}</table>{resto}
+      <p style="font:13px Arial;color:#6b6566;margin-top:16px">Todo el detalle en el
+      <a href="https://marcmestre1999-art.github.io/livezy-radar/#cambios" style="color:#AD182C">panel del radar</a>.</p></div></div>"""
+    marcas = list(dict.fromkeys(f[0].split('.')[0] for f in filas))
+    msg = MIMEText(cuerpo, 'html', 'utf-8')
+    msg['Subject'] = f"Radar Livezy: {len(filas)} nuevo{'s' if len(filas) > 1 else ''} en {', '.join(marcas[:3])}{'…' if len(marcas) > 3 else ''}"
+    msg['From'] = f"Radar Livezy <{usuario}>"
+    msg['To'] = para
+    try:
+        with smtplib.SMTP_SSL('smtp.gmail.com', 465) as s:
+            s.login(usuario, clave)
+            s.sendmail(usuario, [x.strip() for x in para.split(',')], msg.as_string())
+    except Exception as e:  # que un fallo del correo no impida guardar los datos; se reintenta en la siguiente vuelta
+        print(f"No se pudo enviar el aviso: {e!r}"); c.close(); return
+    ahora = dt.datetime.now(dt.timezone.utc).strftime('%Y-%m-%d %H:%M')
+    c.executemany("update avisos set enviado=? where tienda=? and pid=?", [(ahora, f[0], f[1]) for f in filas])
+    c.commit(); c.close()
+    print(f"Aviso enviado: {len(filas)} productos nuevos")
 
 
 # ---------- Google Trends ----------
@@ -171,8 +258,8 @@ def tendencias(solo=None, zonas=None):
     ses.get('https://trends.google.com/trends/explore?geo=SA', timeout=30)  # cookie NID
     base = 'https://trends.google.com/trends/api'
     arabe = re.compile(r'[؀-ۿ]')
-    for palabra in solo or cfg['palabras']:
-        for zona in (cfg['zonas'] if zonas is None else zonas):
+    for zona in (cfg['zonas'] if zonas is None else zonas):  # país a país: cada uno queda completo
+        for palabra in solo or cfg['palabras']:
             if arabe.search(palabra) and zona not in cfg['zonas_arabe']: continue  # el árabe solo en países árabes
             try:
                 req = {"comparisonItem": [{"keyword": palabra, "geo": zona, "time": "today 5-y"}], "category": 0, "property": ""}
@@ -239,6 +326,13 @@ def informe():
 
     actuales = q("""select p.tienda, p.pid, p.titulo, p.tipo, p.tags, p.url, p.creado, f.precio, f.ranking, f.disponibles
                     from fotos f join productos p using(tienda, pid) where f.fecha=?""", ultima)
+
+    nov = q("""select a.visto, a.tienda, p.titulo, p.url, a.precio from avisos a join productos p using(tienda, pid)
+               where a.visto>=? order by a.visto desc""", (dt.date.fromisoformat(ultima) - dt.timedelta(days=14)).isoformat())
+    L.append("## 0. Productos nuevos detectados (últimos 14 días)\n")
+    L.append("Se revisan las tiendas cada hora; esto es lo que ha aparecido que antes no estaba.\n")
+    L += [f"- {v} UTC · {t}: [{n}]({u}){f' a {p}' if p is not None else ''}" for v, t, n, u, p in nov] or ["- Nada nuevo todavía."]
+    L.append('')
 
     # 1. ingredientes y formatos en lo que se lanza
     L.append("## 1. Qué se está lanzando (últimos 90 días)\n")
@@ -320,20 +414,21 @@ def informe():
                 filas.append((pct(ult, ant), pct(ult, año), palabra, round(ult)))
             if not filas: continue
             L.append(f"### {nombre}\n\n| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |\n|---|---|---|---|")
-            for t3, t12, palabra, u in sorted(filas, key=lambda x: (x[1] is None, -(x[1] or 0)))[:12]:
+            for t3, t12, palabra, u in sorted(filas, key=lambda x: (x[1] is None, -(x[1] or 0)))[:10]:
                 L.append(f"| {palabra} | {u} | {fmt_pct(t3)} | {fmt_pct(t12)} |")
             L.append('')
         fr = q("select max(fecha) from relacionadas")[0][0]
         if fr:
             L.append(f"### Búsquedas relacionadas en auge ({fr})\n")
-            L.append("«Breakout» = ha crecido más de un 5000 %. Es lo más útil para descubrir productos nuevos.\n")
+            L.append("Solo las «Breakout»: han crecido más de un 5000 %. Es lo más útil para descubrir productos nuevos.\n")
             for zona in cfg['relacionadas_en']:
                 filas = q("select palabra, consulta, valor from relacionadas where fecha=? and zona=?", fr, zona)
                 if not filas: continue
                 L.append(f"**{cfg['zonas'][zona]}**\n")
                 por = defaultdict(list)
-                for p, cons, val in filas: por[p].append(f"{cons} ({val})")
-                for p in por: L.append(f"- *{p}*: " + ', '.join(por[p][:8]))
+                for p, cons, val in filas:  # solo las disparadas: el resto alarga mucho lo que lee Claude
+                    if val == 'Breakout' and 'near me' not in cons: por[p].append(cons)
+                for p in por: L.append(f"- *{p}*: " + ', '.join(por[p][:6]))
                 L.append('')
 
     errores = q("select tienda, error from tiendas_log where fecha=? and productos=0", ultima)
@@ -361,6 +456,13 @@ def datos(ultima, hace7, cfg):
     pais = {t['dominio']: t['pais'] for t in json.loads((BASE / 'tiendas.json').read_text(encoding='utf-8'))}
     antes = {} if hace7 == ultima else {(t, pid): (rk, pr) for t, pid, rk, pr in
                                         q("select tienda, pid, ranking, precio from fotos where fecha=?", hace7)}
+    hace14 = (dt.date.fromisoformat(ultima) - dt.timedelta(days=14)).isoformat()
+    novedades = [dict(t=t, pa=pais.get(t, ''), n=tit, u=url, i=miniatura(img), visto=visto, p=pr,
+                      ing=etiquetas(f"{tit} {tipo}", INGREDIENTES), fmt=etiquetas(f"{tit} {tipo}", FORMATOS))
+                 for t, visto, pr, tit, tipo, url, img in q(
+                     """select a.tienda, a.visto, a.precio, p.titulo, p.tipo, p.url, p.imagen from avisos a
+                        join productos p using(tienda, pid) where a.visto>=? order by a.visto desc""", hace14)]
+    recientes = {(r[0], r[1]) for r in q("select tienda, pid from avisos where visto>=?", hace14)}
     productos = []
     for t, pid, tit, tipo, tags, url, img, creado, primera, pr, tach, disp, rk in q(
             """select p.tienda, p.pid, p.titulo, p.tipo, p.tags, p.url, p.imagen, p.creado, p.primera_vez,
@@ -372,7 +474,7 @@ def datos(ultima, hace7, cfg):
             d=round((1 - pr / tach) * 100) if pr and tach and tach > pr else None,
             r=rk, ra=a[0] if a else None, pp=a[1] if a and a[1] != pr else None, s=bool(disp),
             ing=etiquetas(f"{tit} {tipo}", INGREDIENTES), fmt=etiquetas(f"{tit} {tipo}", FORMATOS),
-            nuevo=bool(antes) and a is None and primera > hace7))
+            nuevo=(t, pid) in recientes))
     cambios = []
     if antes:
         actuales = {(t, pid) for t, pid in q("select tienda, pid from fotos where fecha=?", ultima)}
@@ -382,7 +484,6 @@ def datos(ultima, hace7, cfg):
             if (t, pid) not in actuales and t in leidas:
                 cambios.append(dict(tipo='Retirado', t=t, n=tit, u=url, antes=pr, ahora=None))
         for x in productos:
-            if x['nuevo']: cambios.append(dict(tipo='Nuevo', t=x['t'], n=x['n'], u=x['u'], antes=None, ahora=x['p']))
             if x['pp'] is not None and x['p'] is not None:
                 cambios.append(dict(tipo='Baja de precio' if x['p'] < x['pp'] else 'Sube de precio',
                                     t=x['t'], n=x['n'], u=x['u'], antes=x['pp'], ahora=x['p']))
@@ -406,7 +507,7 @@ def datos(ultima, hace7, cfg):
                tiendas=[dict(t=t, pa=pais.get(t, ''), n=n, r=r) for t, n, r in
                         q("select tienda, productos, con_ranking from tiendas_log where fecha=?", ultima)],
                zonas=cfg['zonas'], zonas_act=dict(q("select zona, max(recogido) from tendencias group by zona")),
-               productos=productos, cambios=cambios, tendencias=tend, relacionadas=rel)
+               productos=productos, novedades=novedades, cambios=cambios, tendencias=tend, relacionadas=rel)
     c.close()
     (DOCS / 'datos.json').write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
     print(f"datos.json: {len(productos)} productos, {len(cambios)} cambios")
@@ -421,4 +522,5 @@ if __name__ == '__main__':
         tendencias([a for a in sys.argv[2:] if not a.startswith('zonas=')] or None, zs)
     if cmd == 'todo':
         tendencias(None, zonas_de_hoy(json.loads((BASE / 'palabras.json').read_text(encoding='utf-8'))))
-    if cmd in ('informe', 'todo'): informe()
+    if cmd == 'vigilar': vigilar()
+    if cmd in ('informe', 'todo', 'vigilar'): informe()

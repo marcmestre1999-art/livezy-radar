@@ -2,7 +2,9 @@
 
 Cada día a las 08:00 (hora de Arabia Saudí) lee el catálogo, los precios, el stock y el orden de «más vendidos» de 43 tiendas
 de suplementos en Shopify (`tiendas.json`). Cada día también baja Google Trends de 2-3 países (Golfo, Egipto, EE. UU., Reino Unido, España, Alemania, Francia y mundial; cada país se renueva cada 6 días)
-(`palabras.json`). Todo se va guardando en `radar.db`, así que el histórico crece solo.
+(`palabras.json`). Además, cada hora mira si alguna tienda ha sacado un producto nuevo y manda un email con foto, precio y enlace (secretos del repo: `GMAIL_USER`, `GMAIL_APP_PASSWORD` = contraseña de aplicación de Google, `AVISO_PARA` = correos separados por comas).
+
+Todo se guarda en `radar.db`, que vive en la rama `datos` sin historial (se sobrescribe en cada vuelta). El panel se publica en GitHub Pages desde la propia acción.
 
 - Panel (pestañas, filtros, ordenar columnas, descargar a Excel): https://marcmestre1999-art.github.io/livezy-radar/
 - El mismo informe en texto (el que le das a Claude): https://marcmestre1999-art.github.io/livezy-radar/informe.md
@@ -10,4 +12,4 @@ de suplementos en Shopify (`tiendas.json`). Cada día también baja Google Trend
 Para añadir una tienda o una búsqueda basta con editar `tiendas.json` o `palabras.json`. La tienda tiene que ser Shopify:
 se comprueba abriendo `https://dominio/products.json`.
 
-Comandos: `python radar.py tiendas | tendencias | informe | todo`.
+Comandos: `python radar.py tiendas | tendencias [zonas=KW,QA] | vigilar | informe | todo`.

@@ -1,26 +1,49 @@
 name: radar
 on:
   schedule:
-    - cron: '0 5 * * *'   # cada día a las 08:00 de Arabia Saudí
+    - cron: '0 5 * * *'    # recogida completa, 08:00 en Arabia Saudí
+    - cron: '25 * * * *'   # cada hora: productos nuevos + email
   workflow_dispatch:
+    inputs:
+      modo:
+        description: 'todo o vigilar'
+        default: 'vigilar'
 permissions:
   contents: write
-concurrency: radar
+  pages: write
+  id-token: write
+concurrency:
+  group: radar
+  cancel-in-progress: false
 jobs:
-  recoger:
+  radar:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    environment:
+      name: github-pages
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: pip install requests
-      - run: python radar.py todo
-      - name: Guardar datos
+      # la base de datos vive en la rama «datos», sin historial, para que el repo no crezca con cada recogida
+      - name: Traer la base de datos
+        run: git fetch --depth 1 origin datos && git show origin/datos:radar.db > radar.db
+      - name: Radar
+        env:
+          MODO: ${{ github.event.schedule == '0 5 * * *' && 'todo' || inputs.modo || 'vigilar' }}
+          GMAIL_USER: ${{ secrets.GMAIL_USER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          AVISO_PARA: ${{ secrets.AVISO_PARA }}
+        run: python radar.py "$MODO"
+      - name: Guardar la base de datos
         run: |
-          git config user.name "radar"
-          git config user.email "radar@users.noreply.github.com"
-          git add radar.db docs
-          git diff --cached --quiet || git commit -m "datos $(date -u +%F)"
-          git push
+          mkdir /tmp/d && cp radar.db /tmp/d/ && cd /tmp/d
+          git init -q -b datos && git add radar.db
+          git -c user.name=radar -c user.email=radar@users.noreply.github.com commit -qm "datos $(date -u '+%F %H:%M')"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" datos
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - uses: actions/deploy-pages@v4

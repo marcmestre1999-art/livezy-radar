@@ -74,6 +74,11 @@ td.prod{min-width:220px}td.prod a{text-decoration:none;font-weight:500}td.prod a
 .nota summary{cursor:pointer;color:var(--txt);font-weight:500}
 .heat td.num{font-weight:600}
 .ancho{grid-column:1/-1}
+.novs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:12px}
+.nov{display:flex;gap:10px;align-items:flex-start;text-decoration:none;padding:8px;border-radius:10px}
+.nov:hover{background:var(--fila)}
+.nov img{width:56px;height:56px;object-fit:cover;border-radius:8px;background:var(--fila);flex:none}
+.nov b{display:block;font-size:13px;line-height:1.3}.nov span{font-size:12px;color:var(--sub)}
 svg.sp{display:block}
 @media (max-width:600px){.barra{grid-template-columns:105px 1fr 46px;font-size:13px}h1{font-size:19px}.card{padding:14px}body{overflow-x:hidden}}
 </style>
@@ -87,7 +92,7 @@ svg.sp{display:block}
     <button data-v="tendencias">Tendencias por país</button>
     <button data-v="lanzamientos">Lanzamientos</button>
     <button data-v="productos">Todos los productos</button>
-    <button data-v="cambios">Cambios de la semana</button>
+    <button data-v="cambios">Novedades y cambios</button>
   </nav>
 </div></header>
 <main class="w" id="app"></main>
@@ -191,6 +196,11 @@ function filtrosProducto(extra = []) {
 }
 const hace = n => new Date(Date.parse(D.fecha) - n * 864e5).toISOString().slice(0, 10);
 
+const cuando = v => new Date(v.replace(' ', 'T') + 'Z').toLocaleString('es-ES', {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'});
+const novedadesHTML = l => l.length ? `<div class="novs">${l.map(x => `<a class="nov" href="${esc(x.u)}" target="_blank" rel="noopener">
+  ${x.i ? `<img loading="lazy" src="${esc(x.i)}" alt="">` : ''}<div><b>${esc(x.n)}</b><span>${esc(x.t)} · ${precio(x.p, x.pa)} · ${cuando(x.visto)}</span>
+  ${x.ing.concat(x.fmt).length ? `<br><span>${esc(x.ing.concat(x.fmt).join(' · '))}</span>` : ''}</div></a>`).join('')}</div>` : '';
+
 // ---------- vistas ----------
 const V = {};
 V.resumen = app => {
@@ -214,6 +224,9 @@ V.resumen = app => {
     <div class="card kpi"><b>${n90.length}</b><span>lanzamientos en los últimos 90 días</span></div>
     <div class="card kpi"><b>${nSuben}</b><span>búsquedas que suben más de un 15 % en Arabia Saudí frente al año pasado</span></div>
   </div>
+  <div class="card" style="margin-top:16px"><h3>Recién salidos</h3><p class="s">Productos que han aparecido en las tiendas en los últimos 14 días. Se revisa cada hora y llega un email con cada novedad.</p>
+    ${novedadesHTML(D.novedades.slice(0, 12)) || '<p class="mut" style="margin:0">Todavía nada: el aviso empieza a funcionar a partir de hoy. En cuanto una tienda saque algo, saldrá aquí.</p>'}
+    ${D.novedades.length > 12 ? `<p class="s" style="margin:10px 0 0"><a href="#" data-ir2="cambios">Ver las ${D.novedades.length} novedades →</a></p>` : ''}</div>
   <div class="grid dos" style="margin-top:16px">
     <div class="card"><h3>Qué está lanzando la competencia</h3><p class="s">Ingredientes de los productos nuevos de los últimos 90 días («t» = tiendas distintas). Pulsa uno para ver los productos.</p>${barras(ing, 'ing')}</div>
     <div class="card"><h3>En qué formato</h3><p class="s">Formato de esos mismos lanzamientos.</p>${barras(fmt, 'fmt')}</div>
@@ -229,6 +242,7 @@ V.resumen = app => {
     <p>Histórico de tiendas: ${D.dias} día${D.dias > 1 ? 's' : ''} (desde ${fecha(D.desde)}). Los cambios de la semana y las subidas en ventas aparecen cuando hay al menos 7 días para comparar.</p></details>`;
   app.querySelectorAll('[data-ing],[data-fmt]').forEach(b => b.onclick = () => ir('lanzamientos', b.dataset.ing ? [0, b.dataset.ing] : [1, b.dataset.fmt]));
   $('[data-ir]', app).onclick = e => { e.preventDefault(); ir('tendencias'); };
+  const b2 = $('[data-ir2]', app); if (b2) b2.onclick = e => { e.preventDefault(); ir('cambios'); };
 };
 
 V.lanzamientos = (app, preset) => {
@@ -255,17 +269,19 @@ V.productos = app => {
 };
 
 V.cambios = app => {
+  const nov = `<div class="card" style="margin-bottom:16px"><h3>Productos nuevos (últimos 14 días)</h3><p class="s">Se revisan las tiendas cada hora. Hora de tu navegador.</p>
+    ${novedadesHTML(D.novedades) || '<p class="mut" style="margin:0">Todavía nada. En cuanto una tienda saque un producto, saldrá aquí y llegará el email.</p>'}</div>`;
   if (!D.comparado) {
     const d = new Date(Date.parse(D.desde) + 7 * 864e5).toISOString().slice(0, 10);
-    app.innerHTML = `<div class="card vacio-msg"><h3>Todavía no hay una semana de datos</h3><p>El radar empezó el ${fecha(D.desde)}. A partir del ${fecha(d)} aquí saldrán los productos nuevos, los retirados, los cambios de precio y los que suben en ventas.</p></div>`;
+    app.innerHTML = nov + `<div class="card vacio-msg"><h3>Cambios de precio, stock y ventas</h3><p>El radar empezó el ${fecha(D.desde)}. A partir del ${fecha(d)} aquí saldrán los retirados, los cambios de precio y los que suben en ventas.</p></div>`;
     return;
   }
-  app.innerHTML = `<div class="card" style="margin-bottom:14px"><h3>Cambios desde el ${fecha(D.comparado)}</h3><p class="s" style="margin:0">Lo que ha cambiado en las tiendas en la última semana.</p></div><div id="t"></div>`;
+  app.innerHTML = nov + `<div class="card" style="margin-bottom:14px"><h3>Cambios desde el ${fecha(D.comparado)}</h3><p class="s" style="margin:0">Precios, retirados y subidas en ventas de la última semana.</p></div><div id="t"></div>`;
   const pa = Object.fromEntries(D.tiendas.map(t => [t.t, t.pa]));
   tabla($('#t', app), {
     filas: D.cambios, csv: 'cambios', orden: [0, 1],
     cols: [
-      {t: 'Qué', v: x => x.tipo, h: x => `<span class="${/Sube en|Nuevo|Baja de/.test(x.tipo) ? 'up' : 'down'}">${esc(x.tipo)}</span>`},
+      {t: 'Qué', v: x => x.tipo, h: x => `<span class="${/Sube en|Baja de/.test(x.tipo) ? 'up' : 'down'}">${esc(x.tipo)}</span>`},
       {t: 'Producto', v: x => x.n, cls: 'prod', h: x => `<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.n)}</a>`},
       {t: 'Tienda', v: x => x.t},
       {t: 'Antes', num: 1, v: x => x.antes, h: x => x.tipo === 'Sube en ventas' ? `puesto ${x.antes}` : precio(x.antes, pa[x.t])},
