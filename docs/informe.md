@@ -1,13 +1,13 @@
 # Radar de producto Livezy — 2026-10-27
 
-- Tiendas leídas hoy: **43**, con 3824 productos.
+- Tiendas leídas hoy: **43**, con 3846 productos.
 - Histórico de tiendas: **1 días** (desde 2026-10-27). Comparación semanal contra 2026-10-27.
 - Google Trends: semanas del 2021-10-24 al 2026-10-18 (actualizado 2026-10-27).
 - Cómo leerlo: el «ranking» es el orden de «más vendidos» que muestra cada tienda (1 = el que más vende). Los lanzamientos usan la fecha de alta del producto en Shopify. Google Trends es interés relativo (0-100) de cada búsqueda por separado: sirve para ver la dirección, no para comparar volúmenes entre palabras.
 
 ## 1. Qué se está lanzando (últimos 90 días)
 
-292 productos nuevos en 34 tiendas.
+297 productos nuevos en 34 tiendas.
 
 | Ingrediente / necesidad | Lanzamientos | Tiendas distintas |
 |---|---|---|
@@ -34,12 +34,12 @@
 
 | Formato | Lanzamientos |
 |---|---|
-| Sticks / sobres | 15 |
+| Sticks / sobres | 16 |
 | Gominolas | 13 |
 | Cápsulas | 12 |
+| Bebida / shot | 5 |
 | Tiras orales | 5 |
 | Polvo | 4 |
-| Bebida / shot | 3 |
 | Barritas / snacks | 3 |
 | Comprimidos | 3 |
 | Gotas / líquido | 1 |
@@ -53,7 +53,7 @@
 | 2026-10-26 | us.foursigmatic.com | [Gut Health Ground Coffee (Medium Roast)](https://us.foursigmatic.com/products/gut-health-ground-coffee-medium-roast) | 20.0 | — |
 | 2026-10-22 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-13) | 79.99 | 68 |
 | 2026-10-21 | elmandrye.com | [Glycine capsules](https://elmandrye.com/products/glycine-capsules) | 69.99 | 69 |
-| 2026-10-20 | arrae.com | [Clear Protein+ Lemon Lime](https://arrae.com/products/clear-protein-lemon-lime) | 53.95 | — |
+| 2026-10-20 | arrae.com | [Clear Protein+ Lemon Lime](https://arrae.com/products/clear-protein-lemon-lime) | 59.0 | — |
 | 2026-10-20 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-12) | 79.99 | — |
 | 2026-10-20 | shopbeam.com | [Shawn’s Exclusive: Mom & Me Bundle](https://shopbeam.com/products/shawn-s-exclusive-mom-me-bundle) | 114.99 | 62 |
 | 2026-10-19 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-11) | 79.99 | — |
@@ -79,7 +79,7 @@
 | 2026-10-12 | ryzesuperfoods.com | [FREE Latte Sticks](https://ryzesuperfoods.com/products/free-latte-sticks-ube) | 0.0 | — |
 | 2026-10-11 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-7) | 79.99 | — |
 | 2026-10-10 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-6) | 79.99 | — |
-| 2026-10-09 | arrae.com | [Clear Protein+ 9ct Variety Sample Pack](https://arrae.com/products/clear-protein-variety-pack-samples) | 0.0 | 31 |
+| 2026-10-09 | arrae.com | [Clear Protein+ 9ct Variety Sample Pack](https://arrae.com/products/clear-protein-variety-pack-samples) | 0.0 | — |
 | 2026-10-09 | arrae.com | [Free Gift | Bloat Capsules (40 Count)](https://arrae.com/products/free-gift-bloat-capsules-40) | 0.0 | 12 |
 | 2026-10-09 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-5) | 79.99 | — |
 | 2026-10-08 | elmandrye.com | [Tongkat ali eurycomanone](https://elmandrye.com/products/tongkat-ali-eurycomanone) | 74.99 | — |
@@ -90,7 +90,7 @@
 | 2026-10-07 | cellucor.com | [C4 Sport® Pre-Workout Cereal Killer](https://cellucor.com/products/c4-sport-pre-workout-cereal-killer) | 21.99 | — |
 | 2026-10-07 | elmandrye.com | [Maqui berry delphinol](https://elmandrye.com/products/maqui-berry-delphinol) | 79.99 | — |
 | 2026-10-07 | lemmelive.com | [Maëlys Get Dreamy](https://lemmelive.com/products/maelys-get-dreamy) | 0.0 | — |
-| 2026-10-06 | bloomnu.com | [Crisp Apple Lovers Trio](https://bloomnu.com/products/crisp-apple-lovers-trio) | 59.95 | 13 |
+| 2026-10-06 | bloomnu.com | [Crisp Apple Lovers Trio](https://bloomnu.com/products/crisp-apple-lovers-trio) | 54.42 | 26 |
 | 2026-10-06 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-4) | 79.99 | — |
 | 2026-10-05 | cellucor.com | [Cellucor Creatine Stick Packs](https://cellucor.com/products/creatine-stick-packs) | 9.99 | — |
 | 2026-10-05 | elmandrye.com | [Dihydroberberine](https://elmandrye.com/products/dihydroberberine) | 79.99 | — |
@@ -113,9 +113,10 @@
 
 - **arrae.com**: 1. [Clear Protein+](https://arrae.com/products/clear-protein) · 2. [Arrae Clear Protein+ Raspberry Yuzu 7ct](https://arrae.com/products/arrae-clear-protein-raspberry-yuzu-14-count-tiktok) · 3. [Clear Protein+ (Legacy - 20ct)](https://arrae.com/products/clear-protein-raspberry-yuzu-1-time-purchase) · 4. [Mini Bloat](https://arrae.com/products/mini-bloat) · 5. [Arrae Bloat Gummy Peach Lemon (28 Count)](https://arrae.com/products/arrae-bloat-gummy-peach-lemon-28-count)
 - **bioptimizers.com**: 1. [From Sick to Superhuman](https://bioptimizers.com/products/from-sick-to-superhuman) · 2. [kApex](https://bioptimizers.com/products/kapex) · 3. [Para Guardian](https://bioptimizers.com/products/para-guardian) · 4. [The Ultimate Carnivore Cookbook](https://bioptimizers.com/products/the-ultimate-carnivore-cookbook) · 5. [Herbal Power Flush](https://bioptimizers.com/products/herbal-power-flush)
-- **bloomnu.com**: 1. [Whey Isolate Protein](https://bloomnu.com/products/protein) · 2. [Sparkling Energy Gift](https://bloomnu.com/products/ab918034) · 3. [July Beverage Gift](https://bloomnu.com/products/july-beverage-gift) · 4. [Hormone Health Intro Bundle](https://bloomnu.com/products/hormone-health-intro-bundle) · 5. [Double the Flavor Bundle](https://bloomnu.com/products/double-the-flavor-bundle)
+- **bloomnu.com**: 1. [Whey Isolate Protein](https://bloomnu.com/products/protein) · 2. [Sparkling Energy Gift](https://bloomnu.com/products/ab918034) · 3. [July Beverage Gift](https://bloomnu.com/products/july-beverage-gift) · 4. [Hormone Health Intro Bundle](https://bloomnu.com/products/hormone-health-intro-bundle) · 5. [July Nutrition Gift](https://bloomnu.com/products/june-nutrition-gift)
 - **cellucor.com**: 1. [C4 Performance Energy®](https://cellucor.com/products/c4-original-carbonated) · 2. [C4 Performance Energy® x JOLLY RANCHER](https://cellucor.com/products/c4-energy-x-jolly-rancher) · 3. [C4 Performance Energy® X Popsicle®](https://cellucor.com/products/c4-performance-energy-x-popsicle) · 4. [XTEND® Original BCAA Powder](https://cellucor.com/products/xtend-original) · 5. [Cellucor® Unflavored Creatine Powder](https://cellucor.com/products/creatine-monohydrate-powder)
 - **cleanmachineonline.com**: 1. [Cell Block 80™](https://cleanmachineonline.com/products/cell-block-80) · 2. [Ahiflower® Oil](https://cleanmachineonline.com/products/ahiflower-oil) · 3. [MycelPro-1™, Unflavored  Whole Food Mycelium Protein Powder](https://cleanmachineonline.com/products/mycelpro1-unflavored) · 4. [Organic Vegan D3 (USDA Certified)](https://cleanmachineonline.com/products/vegan-d3) · 5. [N10s Clean Pre-workout](https://cleanmachineonline.com/products/n10s-pre-workout)
+- **codeage.com**: 1. [Multi Collagen Protein Powder Large](https://codeage.com/products/multi-collagen-protein-powder) · 2. [Women’s Daily Multivitamin+](https://codeage.com/products/womens-fermented-multivitamin) · 3. [Teen’s Daily Multivitamin+](https://codeage.com/products/teens-fermented-multivitamin) · 4. [Multi Collagen Peptides Powder Platinum](https://codeage.com/products/multi-collagen-protein-powder-platinum-biotin-keratin-vitamin-hyaluronicacid) · 5. [Men’s Daily Multivitamin+](https://codeage.com/products/mens-fermented-multivitamin)
 - **elmandrye.com**: 1. [Libido](https://elmandrye.com/products/sex-performance-enhancer) · 2. [Testosterone Support Gummies and Capsules](https://elmandrye.com/products/testosterone) · 3. [Slimming Gummies OR Capsules | Fat Burner](https://elmandrye.com/products/fat-burner) · 4. [Collagen Protein Powder](https://elmandrye.com/products/protein-supplement) · 5. [Daily Probiotic](https://elmandrye.com/products/probiotic-supplements)
 - **ghostlifestyle.com**: 1. [GHOST® PROTEIN BARS | CHOCOLATE CARAMEL 12 PACK](https://ghostlifestyle.com/products/ghost-protein-bars-12-pack-chocolate-caramel) · 2. [GHOST® HYDRATION STICKS 24-PACK x WELCH'S® | GRAPE](https://ghostlifestyle.com/products/ghost-hydration-sticks-24-pack-x-welchs-grape) · 3. [GHOST® WHEY PACKET | PEANUT BUTTER CEREAL MILK®](https://ghostlifestyle.com/products/ghost-whey-packet-peanut-butter-cereal-milk) · 4. [GHOST® WHEY PACKET | CHOCOLATE CHIP COOKIES](https://ghostlifestyle.com/products/ghost-whey-packet-chocolate-chip-cookies) · 5. [GHOST® WHEY PACKET | CEREAL MILK®](https://ghostlifestyle.com/products/ghost-whey-packet-cereal-milk)
 - **grenade.com**: 1. [OREO White Protein Bar](https://grenade.com/products/oreo-white-protein-bar) · 2. [Protein Bar Selection Box](https://grenade.com/products/protein-bars-selection-box) · 3. [White Chocolate Salted Peanut Protein Bar](https://grenade.com/products/protein-bar-white-chocolate-salted-peanut) · 4. [Fudged Up Protein Bar](https://grenade.com/products/protein-bar-fudged-up) · 5. [Chocolate Chip Cookie Dough Protein Bar](https://grenade.com/products/protein-bar-cookie-dough)
@@ -130,7 +131,7 @@
 - **moonjuice.com**: 1. [Collagen Protect](https://moonjuice.com/products/beauty-shroom-vegan-collagen-protection) · 2. [Plump Jelly](https://moonjuice.com/products/beauty-shroom-plumping-jelly-serum) · 3. [Brain Dust](https://moonjuice.com/products/brain-dust) · 4. [Acid Potion](https://moonjuice.com/products/beauty-shroom-exfoliating-acid-potion) · 5. [Cosmic Cocoa™](https://moonjuice.com/products/cosmic-cocoa)
 - **olly.com**: 1. [Metabolism Gummy Rings](https://olly.com/products/metabolism-gummy-rings) · 2. [Women's Multi](https://olly.com/products/womens-multi) · 3. [Lovin' Libido](https://olly.com/products/olly-lovin-libido) · 4. [Probiotic + Prebiotic](https://olly.com/products/probiotic-prebiotic) · 5. [Hello Happy](https://olly.com/products/hello-happy)
 - **organifi.com**: 1. [Glow](https://organifi.com/products/glow) · 2. [Gold](https://organifi.com/products/gold) · 3. [Gold Chocolate](https://organifi.com/products/organifi-gold-hot-chocolate) · 4. [Green Juice Travel Packs 30 ct](https://organifi.com/products/green-juice-travel-packs-30-ct) · 5. [Liver Reset](https://organifi.com/products/natural-liver-detox)
-- **ritual.com**: 1. [Women’s Multivitamin 18+](https://ritual.com/products/essential-for-women-multivitamin) · 2. [Prenatal Multivitamin](https://ritual.com/products/essential-prenatal-multivitamin) · 3. [Men’s Multivitamin 18+](https://ritual.com/products/essential-multivitamin-for-men) · 4. [Postnatal Multivitamin](https://ritual.com/products/essential-postnatal-multivitamin) · 5. [Women’s Multivitamin 50+](https://ritual.com/products/essential-multivitamin-for-women-over-50)
+- **ritual.com**: 1. [Men’s Multivitamin 18+](https://ritual.com/products/essential-multivitamin-for-men) · 2. [Postnatal Multivitamin](https://ritual.com/products/essential-postnatal-multivitamin) · 3. [Women’s Multivitamin 50+](https://ritual.com/products/essential-multivitamin-for-women-over-50) · 4. [Natal Choline](https://ritual.com/products/natal-choline) · 5. [Omega-3 DHA & EPA](https://ritual.com/products/omega-3-dha-epa)
 - **ryzesuperfoods.com**: 1. [FREE Shipping](https://ryzesuperfoods.com/products/free-insured-shipping) · 2. [FREE Mushroom Magnet](https://ryzesuperfoods.com/products/mushroom-magnet) · 3. [FREE Spoon & Scoop](https://ryzesuperfoods.com/products/free-spoon-scoop) · 4. [Mushroom Coffee Add-On (SPECIAL PRICING)](https://ryzesuperfoods.com/products/mushroom-coffee-special-pricing) · 5. [Mushroom Bracelet](https://ryzesuperfoods.com/products/mushroom-bracelet)
 - **shopbeam.com**: 1. [Collagen - 5 Servings](https://shopbeam.com/products/collagen-5-servings) · 2. [Collagen](https://shopbeam.com/products/collagen) · 3. [Beam Subscriber Gift](https://shopbeam.com/products/beam-subscriber-gift) · 4. [Creatine](https://shopbeam.com/products/beam-creatine) · 5. [Greens - 5 Servings](https://shopbeam.com/products/greens-5-servings)
 - **smartypantsvitamins.com**: 1. [Kids Plus Multi & Omegas](https://smartypantsvitamins.com/products/kids-multi-and-omegas) · 2. [Teen Guy Plus Multi & Omegas](https://smartypantsvitamins.com/products/teen-guy-multi-and-omegas) · 3. [Women’s Plus Multi & Omegas](https://smartypantsvitamins.com/products/womens-multi-and-omegas) · 4. [Prenatal Plus Multi & Omegas](https://smartypantsvitamins.com/products/prenatal-multi-and-omegas) · 5. [Kids Organic Multi & Omegas](https://smartypantsvitamins.com/products/organic-kids-multi-and-omegas)
@@ -140,7 +141,7 @@
 - **us.foursigmatic.com**: 1. [Focus Ground Coffee - Dark](https://us.foursigmatic.com/products/focus-ground-coffee-bag) · 2. [Calm Decaf Ground Coffee - Medium](https://us.foursigmatic.com/products/calm-decaf-ground-coffee-bag) · 3. [Balance Half Caf Ground Coffee - Medium](https://us.foursigmatic.com/products/balance-half-caf-ground-coffee-bag) · 4. [Gut Health Ground Coffee - Medium](https://us.foursigmatic.com/products/gut-health-ground-coffee-bag) · 5. [Focus Max High Caf Ground Coffee - Dark](https://us.foursigmatic.com/products/boost-high-caf-ground-coffee-bag)
 - **vitabiotics.com**: 1. [Wellwoman 50+](https://vitabiotics.com/products/wellwoman-50-tablets) · 2. [Wellwoman 70+](https://vitabiotics.com/products/wellwoman-70-tablets) · 3. [Perfectil Biotherapy Body Oil](https://vitabiotics.com/products/perfectil-biotherapy-body-oil) · 4. [Ultra Cod Liver Oil](https://vitabiotics.com/products/ultra-cod-liver-oil-plus-omega-3-capsules) · 5. [Ultra Red Krill Oil](https://vitabiotics.com/products/ultra-red-krill-oil)
 - **vitalproteins.com**: 1. [Marine Collagen - Unflavored](https://vitalproteins.com/products/marine-collagen-peptides) · 2. [Chocolate Collagen Peptides](https://vitalproteins.com/products/chocolate-collagen-peptides) · 3. [Vanilla Collagen Creamer](https://vitalproteins.com/products/collagen-creamer) · 4. [Beef Liver - Capsules](https://vitalproteins.com/products/beef-liver-capsules) · 5. [Matcha Collagen](https://vitalproteins.com/products/matcha-collagen-2)
-- **wildnutrition.com**: 1. [Women's 45+ Daily Multi Nutrient](https://wildnutrition.com/products/food-grown-daily-multi-nutrient-45-womens) · 2. [Fertility Support for Men](https://wildnutrition.com/products/food-grown-fertility-men) · 3. [Breastfeeding Support](https://wildnutrition.com/products/food-grown-breast-feeding-support) · 4. [Multi Strain Biotic](https://wildnutrition.com/products/multi-strain-biotic) · 5. [Men's Daily Multi Nutrient](https://wildnutrition.com/products/food-grown-daily-multi-nutrient-mens)
+- **wildnutrition.com**: 1. [Women's Daily Multi Nutrient](https://wildnutrition.com/products/food-grown-daily-multi-nutrient-womens) · 2. [Women's 45+ Daily Multi Nutrient](https://wildnutrition.com/products/food-grown-daily-multi-nutrient-45-womens) · 3. [Fertility Support for Men](https://wildnutrition.com/products/food-grown-fertility-men) · 4. [Breastfeeding Support](https://wildnutrition.com/products/food-grown-breast-feeding-support) · 5. [Multi Strain Biotic](https://wildnutrition.com/products/multi-strain-biotic)
 
 ## 4. Google Trends: búsquedas que suben
 
