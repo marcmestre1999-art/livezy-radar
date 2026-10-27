@@ -4,7 +4,7 @@ Uso:
   python radar.py tiendas     -> foto diaria de catálogo, precios, stock y ranking de ventas de las tiendas Shopify
   python radar.py tendencias  -> Google Trends (Arabia Saudí, Emiratos y mundial) de palabras.json
   python radar.py informe     -> escribe docs/informe.md (lo que lee Claude) y docs/index.html
-  python radar.py todo        -> tiendas + informe (y tendencias si es lunes o jueves)
+  python radar.py todo        -> tiendas + informe + Google Trends de 2-3 países (rotan cada 6 días)
 """
 import json, re, sqlite3, sys, time, html, datetime as dt
 from collections import Counter, defaultdict
@@ -159,7 +159,12 @@ def _json(r):
     return json.loads(r.text[r.text.index('{'):])
 
 
-def tendencias(solo=None):
+def zonas_de_hoy(cfg):
+    """Cada día 2-3 países: así cada uno se renueva cada 6 días sin que Google corte."""
+    return [z for i, z in enumerate(cfg['zonas']) if i % 6 == dt.date.today().toordinal() % 6]
+
+
+def tendencias(solo=None, zonas=None):
     cfg = json.loads((BASE / 'palabras.json').read_text(encoding='utf-8'))
     c = db()
     ses = requests.Session(); ses.headers.update(H)
@@ -167,8 +172,8 @@ def tendencias(solo=None):
     base = 'https://trends.google.com/trends/api'
     arabe = re.compile(r'[؀-ۿ]')
     for palabra in solo or cfg['palabras']:
-        for zona in cfg['zonas']:
-            if arabe.search(palabra) and zona == '': continue  # las palabras en árabe solo en el Golfo
+        for zona in (cfg['zonas'] if zonas is None else zonas):
+            if arabe.search(palabra) and zona not in cfg['zonas_arabe']: continue  # el árabe solo en países árabes
             try:
                 req = {"comparisonItem": [{"keyword": palabra, "geo": zona, "time": "today 5-y"}], "category": 0, "property": ""}
                 r = get(f"{base}/explore", ses=ses, params={'hl': 'en-US', 'tz': '-180', 'req': json.dumps(req)})
@@ -240,7 +245,7 @@ def informe():
     nuevos = [r for r in actuales if r[6] and r[6] >= hace90]
     ci, cf, ti = Counter(), Counter(), defaultdict(set)
     for r in nuevos:
-        txt = f"{r[2]} {r[3]} {r[4]}"
+        txt = f"{r[2]} {r[3]}"
         for n in etiquetas(txt, INGREDIENTES): ci[n] += 1; ti[n].add(r[0])
         for n in etiquetas(f"{r[2]} {r[3]}", FORMATOS): cf[n] += 1
     L.append(f"{len(nuevos)} productos nuevos en {len({r[0] for r in nuevos})} tiendas.\n")
@@ -315,7 +320,7 @@ def informe():
                 filas.append((pct(ult, ant), pct(ult, año), palabra, round(ult)))
             if not filas: continue
             L.append(f"### {nombre}\n\n| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |\n|---|---|---|---|")
-            for t3, t12, palabra, u in sorted(filas, key=lambda x: (x[1] is None, -(x[1] or 0))):
+            for t3, t12, palabra, u in sorted(filas, key=lambda x: (x[1] is None, -(x[1] or 0)))[:12]:
                 L.append(f"| {palabra} | {u} | {fmt_pct(t3)} | {fmt_pct(t12)} |")
             L.append('')
         fr = q("select max(fecha) from relacionadas")[0][0]
@@ -340,25 +345,80 @@ def informe():
     DOCS.mkdir(exist_ok=True)
     md = '\n'.join(L) + '\n'
     (DOCS / 'informe.md').write_text(md, encoding='utf-8')
-    (DOCS / 'index.html').write_text(PAGINA.replace('{{MD}}', html.escape(md)).replace('{{FECHA}}', ultima), encoding='utf-8')
+    datos(ultima, hace7, cfg)
     print(f"Informe escrito: {len(md)} caracteres")
 
 
-PAGINA = """<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Radar Livezy</title><meta name="robots" content="noindex">
-<style>body{font:15px/1.55 system-ui,sans-serif;max-width:980px;margin:0 auto;padding:16px;color:#1d1d1f;background:#fff}
-table{border-collapse:collapse;width:100%;font-size:13px;margin:8px 0}td,th{border-bottom:1px solid #e5e5e5;padding:4px 6px;text-align:left}
-h1{color:#AD182C}h2{margin-top:32px;border-bottom:2px solid #F9D4E4}a{color:#AD182C}.w{overflow-x:auto}</style>
-<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script></head>
-<body><div id="c">Cargando…</div><pre id="md" hidden>{{MD}}</pre>
-<script>const t=document.getElementById('md').textContent;document.getElementById('c').innerHTML=window.marked?marked.parse(t).replace(/<table>/g,'<div class="w"><table>').replace(/<\\/table>/g,'</table></div>'):'<pre>'+t+'</pre>';</script>
-</body></html>"""
+def miniatura(u):
+    if not u or 'cdn.shopify' not in u: return u
+    return u + ('&' if '?' in u else '?') + 'width=120'
+
+
+def datos(ultima, hace7, cfg):
+    """docs/datos.json: lo que pinta el panel (docs/index.html)."""
+    c = db()
+    q = lambda s, *a: c.execute(s, a).fetchall()
+    pais = {t['dominio']: t['pais'] for t in json.loads((BASE / 'tiendas.json').read_text(encoding='utf-8'))}
+    antes = {} if hace7 == ultima else {(t, pid): (rk, pr) for t, pid, rk, pr in
+                                        q("select tienda, pid, ranking, precio from fotos where fecha=?", hace7)}
+    productos = []
+    for t, pid, tit, tipo, tags, url, img, creado, primera, pr, tach, disp, rk in q(
+            """select p.tienda, p.pid, p.titulo, p.tipo, p.tags, p.url, p.imagen, p.creado, p.primera_vez,
+                      f.precio, f.precio_tachado, f.disponibles, f.ranking
+               from fotos f join productos p using(tienda, pid) where f.fecha=?""", ultima):
+        a = antes.get((t, pid))
+        productos.append(dict(
+            t=t, pa=pais.get(t, ''), n=tit, u=url, i=miniatura(img), c=creado, p=pr,
+            d=round((1 - pr / tach) * 100) if pr and tach and tach > pr else None,
+            r=rk, ra=a[0] if a else None, pp=a[1] if a and a[1] != pr else None, s=bool(disp),
+            ing=etiquetas(f"{tit} {tipo}", INGREDIENTES), fmt=etiquetas(f"{tit} {tipo}", FORMATOS),
+            nuevo=bool(antes) and a is None and primera > hace7))
+    cambios = []
+    if antes:
+        actuales = {(t, pid) for t, pid in q("select tienda, pid from fotos where fecha=?", ultima)}
+        leidas = {x['t'] for x in productos}
+        for t, pid, tit, url, pr in q("""select f.tienda, f.pid, p.titulo, p.url, f.precio from fotos f
+                                         join productos p using(tienda, pid) where f.fecha=?""", hace7):
+            if (t, pid) not in actuales and t in leidas:
+                cambios.append(dict(tipo='Retirado', t=t, n=tit, u=url, antes=pr, ahora=None))
+        for x in productos:
+            if x['nuevo']: cambios.append(dict(tipo='Nuevo', t=x['t'], n=x['n'], u=x['u'], antes=None, ahora=x['p']))
+            if x['pp'] is not None and x['p'] is not None:
+                cambios.append(dict(tipo='Baja de precio' if x['p'] < x['pp'] else 'Sube de precio',
+                                    t=x['t'], n=x['n'], u=x['u'], antes=x['pp'], ahora=x['p']))
+            if x['r'] and x['ra'] and x['ra'] - x['r'] >= 3:
+                cambios.append(dict(tipo='Sube en ventas', t=x['t'], n=x['n'], u=x['u'], antes=x['ra'], ahora=x['r']))
+    tend = {}
+    for z in cfg['zonas']:
+        tend[z] = {}
+        for (palabra,) in q("select distinct palabra from tendencias where zona=?", z):
+            filas = q("select semana, valor from tendencias where palabra=? and zona=? order by semana", palabra, z)
+            v = [f[1] for f in filas]
+            if len(v) < 64: continue
+            ult, ant, año = sum(v[-12:]) / 12, sum(v[-24:-12]) / 12, sum(v[-64:-52]) / 12
+            tend[z][palabra] = dict(m=round(ult), d12=pct(ult, ant), da=pct(ult, año), v=v[-104:])
+    rel = defaultdict(list)
+    for z, palabra, cons, val in q("""select zona, palabra, consulta, valor from relacionadas r
+                                     where fecha=(select max(fecha) from relacionadas s where s.zona=r.zona)"""):
+        rel[z].append(dict(p=palabra, q=cons, v=val))
+    fechas = [r[0] for r in q("select distinct fecha from fotos order by fecha")]
+    out = dict(fecha=ultima, desde=fechas[0], dias=len(fechas), comparado=hace7 if antes else None,
+               tiendas=[dict(t=t, pa=pais.get(t, ''), n=n, r=r) for t, n, r in
+                        q("select tienda, productos, con_ranking from tiendas_log where fecha=?", ultima)],
+               zonas=cfg['zonas'], zonas_act=dict(q("select zona, max(recogido) from tendencias group by zona")),
+               productos=productos, cambios=cambios, tendencias=tend, relacionadas=rel)
+    c.close()
+    (DOCS / 'datos.json').write_text(json.dumps(out, ensure_ascii=False, separators=(',', ':')), encoding='utf-8')
+    print(f"datos.json: {len(productos)} productos, {len(cambios)} cambios")
 
 
 if __name__ == '__main__':
     cmd = sys.argv[1] if len(sys.argv) > 1 else 'todo'
     resto = sys.argv[2:] or None
     if cmd in ('tiendas', 'todo'): tiendas(resto if cmd == 'tiendas' else None)
-    if cmd == 'tendencias' or (cmd == 'todo' and dt.date.today().weekday() in (0, 3)):
-        tendencias(resto if cmd == 'tendencias' else None)
+    if cmd == 'tendencias':  # python radar.py tendencias [zonas=KW,QA] [palabra…]
+        zs = next((a[6:].split(',') for a in sys.argv[2:] if a.startswith('zonas=')), None)
+        tendencias([a for a in sys.argv[2:] if not a.startswith('zonas=')] or None, zs)
+    if cmd == 'todo':
+        tendencias(None, zonas_de_hoy(json.loads((BASE / 'palabras.json').read_text(encoding='utf-8'))))
     if cmd in ('informe', 'todo'): informe()

@@ -11,26 +11,26 @@
 
 | Ingrediente / necesidad | Lanzamientos | Tiendas distintas |
 |---|---|---|
-| Probióticos / digestión | 25 | 9 |
-| Energía / cafeína | 23 | 9 |
-| Proteína | 17 | 6 |
-| Peso / metabolismo | 14 | 3 |
-| L-teanina / foco | 13 | 6 |
+| Probióticos / digestión | 17 | 7 |
+| Proteína | 16 | 5 |
 | Electrolitos | 12 | 5 |
-| Menopausia / hormonas | 11 | 4 |
-| Setas funcionales | 11 | 4 |
-| Sueño / melatonina | 8 | 5 |
-| Estrés / ánimo | 8 | 4 |
+| Energía / cafeína | 12 | 6 |
 | Creatina | 8 | 7 |
-| Piel / belleza | 8 | 6 |
-| Pelo / biotina | 5 | 3 |
+| Menopausia / hormonas | 7 | 3 |
+| Piel / belleza | 7 | 5 |
+| Setas funcionales | 6 | 3 |
 | Magnesio | 5 | 3 |
-| Libido / hombre | 4 | 3 |
+| Sueño / melatonina | 5 | 4 |
+| Pelo / biotina | 4 | 2 |
 | Greens / superalimentos | 4 | 4 |
-| Ashwagandha | 4 | 1 |
-| Vinagre de manzana | 4 | 1 |
-| Glutatión | 3 | 2 |
-| Inmunidad | 3 | 3 |
+| L-teanina / foco | 3 | 2 |
+| Glutatión | 2 | 1 |
+| Inmunidad | 2 | 2 |
+| Hígado de ternera / órganos | 2 | 2 |
+| Inositol | 1 | 1 |
+| Zinc | 1 | 1 |
+| Calostro | 1 | 1 |
+| Berberina | 1 | 1 |
 
 | Formato | Lanzamientos |
 |---|---|
@@ -163,35 +163,6 @@
 | inositol | 48 | -23 % | +7 % |
 | magnesium | 40 | -21 % | +7 % |
 | بروتين | 82 | -5 % | +5 % |
-| NAD | 46 | -15 % | +3 % |
-| vitamin d | 45 | -17 % | +1 % |
-| ashwagandha | 42 | -29 % | +0 % |
-| melatonin | 37 | -16 % | +0 % |
-| probiotics | 31 | -34 % | -1 % |
-| electrolytes | 41 | -40 % | -2 % |
-| gummies | 65 | -9 % | -4 % |
-| جلوتاثيون | 34 | -14 % | -10 % |
-| omega 3 | 47 | -19 % | -11 % |
-| glutathione | 52 | -15 % | -12 % |
-| collagen | 48 | -15 % | -13 % |
-| فيتامين د | 49 | +1 % | -15 % |
-| كولاجين | 64 | +9 % | -15 % |
-| biotin | 35 | -38 % | -26 % |
-| berberine | 31 | -45 % | -39 % |
-| shilajit | 12 | -37 % | -68 % |
-| sea moss | 1 | -59 % | -88 % |
-| GLP-1 supplement | 0 | — | — |
-| apple cider vinegar gummies | 0 | -100 % | — |
-| beef liver | 4 | -52 % | — |
-| colostrum | 8 | -64 % | — |
-| creatine gummies | 2 | — | — |
-| greens powder | 0 | — | — |
-| hair vitamins | 8 | -22 % | — |
-| iron supplement | 27 | +31 % | — |
-| kids vitamins | 2 | — | — |
-| lion's mane | 1 | -80 % | — |
-| mushroom coffee | 16 | — | — |
-| prenatal vitamins | 8 | — | — |
 
 ### Emiratos
 
@@ -209,36 +180,67 @@
 | omega 3 | 75 | -9 % | +5 % |
 | vitamin d | 79 | -5 % | +5 % |
 | مغنيسيوم | 52 | -15 % | +5 % |
-| melatonin | 72 | -4 % | +4 % |
-| كرياتين | 45 | -17 % | +2 % |
-| inositol | 47 | -21 % | -1 % |
-| collagen | 75 | -9 % | -5 % |
-| glutathione | 55 | -13 % | -8 % |
-| biotin | 40 | -27 % | -10 % |
-| iron supplement | 15 | -66 % | -14 % |
-| probiotics | 54 | -20 % | -14 % |
-| ashwagandha | 52 | -23 % | -17 % |
-| فيتامين د | 41 | +6 % | -18 % |
-| berberine | 45 | -18 % | -27 % |
-| كولاجين | 52 | +0 % | -28 % |
-| sea moss | 8 | +206 % | -42 % |
-| l-theanine | 2 | -87 % | -50 % |
-| shilajit | 20 | -4 % | -55 % |
-| kids vitamins | 2 | -74 % | -57 % |
-| lion's mane | 2 | — | -59 % |
-| hair vitamins | 7 | -54 % | -63 % |
-| beef liver | 5 | -81 % | -65 % |
-| colostrum | 6 | +95 % | -68 % |
-| GLP-1 supplement | 0 | — | — |
-| apple cider vinegar gummies | 0 | -95 % | — |
-| creatine gummies | 4 | -67 % | — |
-| greens powder | 1 | — | — |
-| menopause supplement | 9 | — | — |
-| mushroom coffee | 2 | -72 % | — |
-| prenatal vitamins | 2 | -58 % | — |
-| saffron supplement | 0 | — | — |
-| اشواغندا | 9 | — | — |
-| جلوتاثيون | 1 | — | — |
+
+### Kuwait
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 55 | -6 % | +18 % |
+
+### Qatar
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 62 | -16 % | +19 % |
+| creatine gummies | 0 | — | -100 % |
+
+### Bahréin
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 48 | -6 % | +83 % |
+
+### Omán
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 46 | -7 % | +74 % |
+
+### Egipto
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 60 | -12 % | +16 % |
+
+### EE. UU.
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 56 | -28 % | +19 % |
+
+### Reino Unido
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 75 | +0 % | +18 % |
+
+### España
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 31 | -38 % | +19 % |
+
+### Alemania
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 46 | +1 % | +227 % |
+
+### Francia
+
+| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
+|---|---|---|---|
+| creatine | 60 | +1 % | +46 % |
 
 ### Mundial
 
@@ -256,29 +258,6 @@
 | beef liver | 55 | -28 % | -1 % |
 | vitamin d | 56 | -33 % | -1 % |
 | collagen | 59 | -23 % | -2 % |
-| prenatal vitamins | 44 | -12 % | -2 % |
-| zinc | 59 | -28 % | -4 % |
-| berberine | 46 | -39 % | -5 % |
-| magnesium | 62 | -24 % | -6 % |
-| glutathione | 65 | -25 % | -7 % |
-| inositol | 57 | -18 % | -7 % |
-| omega 3 | 72 | -8 % | -7 % |
-| iron supplement | 36 | -49 % | -10 % |
-| probiotics | 49 | -36 % | -11 % |
-| melatonin | 66 | -19 % | -12 % |
-| mushroom coffee | 44 | -24 % | -12 % |
-| colostrum | 60 | -20 % | -16 % |
-| GLP-1 supplement | 33 | -39 % | -19 % |
-| biotin | 47 | -31 % | -20 % |
-| sea moss | 39 | -24 % | -26 % |
-| l-theanine | 34 | -51 % | -31 % |
-| saffron supplement | 43 | -44 % | -33 % |
-| ashwagandha | 53 | -28 % | -34 % |
-| greens powder | 12 | -61 % | -34 % |
-| menopause supplement | 30 | -46 % | -36 % |
-| apple cider vinegar gummies | 18 | -72 % | -43 % |
-| lion's mane | 33 | -40 % | -49 % |
-| shilajit | 33 | -15 % | -54 % |
 
 ### Búsquedas relacionadas en auge (2026-10-27)
 
@@ -363,4 +342,21 @@
 - *كرياتين*: creapure (Breakout), افضل نوع كرياتين للتضخيم (Breakout), الكرياتين والانتصاب (Breakout), فوائد الكرياتين (+90%), كرياتين للعضلات (+170%), كرياتين مونوهيدرات (+40%), واي بروتين (+90%)
 - *كولاجين*: la belle كولاجين (Breakout), nem كولاجين (Breakout), افضل كولاجين للعظام (Breakout), بانثوفيل كولاجين سيروم (Breakout), فوائد الكولاجين للنساء (Breakout), كارسيل كولاجين (Breakout), كارسيل كولاجين للشعر (Breakout), كوزما كولاجين (Breakout)
 - *مغنيسيوم*: magnesium glycinate (Breakout), أعراض نقص مغنيسيوم (Breakout), اعراض نقص مغنيسيوم (Breakout), افضل مغنيسيوم للنوم (Breakout), فوائد حبوب المغنيسيوم (Breakout), فوائد مغنيسيوم جلايسينيت (Breakout), مغنيسيوم اوكسايد (Breakout), مغنيسيوم بيسجليسينات (Breakout)
+
+**Kuwait**
+
+- *creatine*: applied nutrition (Breakout), applied nutrition creatine (Breakout), ashwagandha (Breakout), basix pure creatine (Breakout), best creatine brand (Breakout), best creatine for men (Breakout), creatine monohydrate applied nutrition (Breakout), creatine monohydrate benefits (Breakout)
+- *creatine gummies*: creatine monohydrate (Breakout)
+
+**Egipto**
+
+- *creatine*: bad ass creatine (+1,050%), badass creatine (+600%), big ramy creatine (Breakout), creatine gummies (Breakout), creatine rule 1 (Breakout), dorian yates creatine (+700%), dy creatine (Breakout), evolve creatine (+3,650%)
+
+**EE. UU.**
+
+- *creatine*: animal creatine chews (+2,900%), best creatine gummies (Breakout), bloom creatine (+4,650%), create creatine gummies (Breakout), creatine gummies (Breakout), creatine gummies vs powder (Breakout), creatine monohydrate gummies (Breakout), ekkovision creatine (Breakout)
+
+**Reino Unido**
+
+- *creatine*: benefits of creatine for women (+600%), best creatine gummies (Breakout), can you take creatine on a plane (+650%), creatine benefits for women (+800%), creatine gummies (Breakout), creatine gummies uk (+3,100%), creatine gummies vs powder (+2,500%), nutrition geeks (Breakout)
 

@@ -1,375 +1,337 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Radar Livezy</title><meta name="robots" content="noindex">
-<style>body{font:15px/1.55 system-ui,sans-serif;max-width:980px;margin:0 auto;padding:16px;color:#1d1d1f;background:#fff}
-table{border-collapse:collapse;width:100%;font-size:13px;margin:8px 0}td,th{border-bottom:1px solid #e5e5e5;padding:4px 6px;text-align:left}
-h1{color:#AD182C}h2{margin-top:32px;border-bottom:2px solid #F9D4E4}a{color:#AD182C}.w{overflow-x:auto}</style>
-<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script></head>
-<body><div id="c">Cargando…</div><pre id="md" hidden># Radar de producto Livezy — 2026-10-27
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Radar Livezy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--rojo:#AD182C;--rosa:#F9D4E4;--azul:#ACCCFF;--bg:#faf8f7;--card:#fff;--txt:#1d1b1b;--sub:#6b6566;--borde:#ebe5e3;
+  --sube:#1f8a4c;--sube-bg:#e3f4ea;--baja:#c0392b;--baja-bg:#fbe7e4;--fila:#fdf6f8}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#141213;--card:#1d1a1b;--txt:#f2eeee;--sub:#a59d9e;--borde:#332e2f;
+  --sube:#4cc985;--sube-bg:#173324;--baja:#ff7a6b;--baja-bg:#3a1c19;--fila:#251f21;--rosa:#4a2733}}
+:root[data-theme=dark]{--bg:#141213;--card:#1d1a1b;--txt:#f2eeee;--sub:#a59d9e;--borde:#332e2f;--sube:#4cc985;--sube-bg:#173324;
+  --baja:#ff7a6b;--baja-bg:#3a1c19;--fila:#251f21;--rosa:#4a2733}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:14px/1.5 "IBM Plex Sans",system-ui,sans-serif}
+a{color:inherit}
+header{background:var(--rojo);color:#fff;padding:18px 16px 0}
+.w{max-width:1280px;margin:0 auto}
+h1{margin:0;font-size:22px;font-weight:700;letter-spacing:-.01em}
+h1 span{font-weight:400;opacity:.8}
+.meta{opacity:.85;font-size:13px;margin:4px 0 14px}
+nav{display:flex;gap:4px;overflow-x:auto}
+nav button{background:none;border:0;color:#fff;opacity:.75;font:inherit;font-weight:500;padding:10px 14px;border-radius:10px 10px 0 0;cursor:pointer;white-space:nowrap}
+nav button.on{background:var(--bg);color:var(--rojo);opacity:1}
+main{padding:20px 16px 60px}
+.grid{display:grid;gap:16px}
+.kpis{grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr))}
+.dos{grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr))}
+.card{background:var(--card);border:1px solid var(--borde);border-radius:14px;padding:16px 18px}
+.card h3{margin:0 0 4px;font-size:15px}
+.card p.s{margin:0 0 12px;color:var(--sub);font-size:13px}
+.kpi b{display:block;font-size:28px;font-weight:700;color:var(--rojo);line-height:1.1}
+.kpi span{color:var(--sub);font-size:13px}
+.barra{display:grid;grid-template-columns:150px 1fr 54px;align-items:center;gap:10px;padding:4px 0;cursor:pointer;border-radius:6px}
+.barra:hover{background:var(--fila)}
+.barra .b{height:10px;background:var(--rosa);border-radius:5px;overflow:hidden}
+.barra .b i{display:block;height:100%;background:var(--rojo);border-radius:5px}
+.barra small{color:var(--sub);text-align:right}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{background:var(--fila);border:1px solid var(--borde);border-radius:99px;padding:3px 10px;font-size:12.5px}
+.chip.bo{border-color:var(--rojo);color:var(--rojo)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;align-items:center}
+.bar input[type=search],.bar select{font:inherit;padding:7px 10px;border:1px solid var(--borde);border-radius:9px;background:var(--card);color:var(--txt);max-width:100%}
+.bar input[type=search]{flex:1 1 220px}
+.bar label{display:flex;gap:5px;align-items:center;font-size:13px;color:var(--sub);cursor:pointer}
+.bar .n{margin-left:auto;color:var(--sub);font-size:13px}
+.btn{font:inherit;font-size:13px;padding:7px 12px;border-radius:9px;border:1px solid var(--borde);background:var(--card);color:var(--txt);cursor:pointer}
+.btn:hover{border-color:var(--rojo);color:var(--rojo)}
+.tabla{overflow-x:auto;background:var(--card);border:1px solid var(--borde);border-radius:14px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{position:sticky;top:0;background:var(--card);text-align:left;font-weight:600;padding:10px;border-bottom:2px solid var(--borde);cursor:pointer;white-space:nowrap;user-select:none}
+th:hover{color:var(--rojo)}
+th.asc::after{content:" ▲";font-size:10px;color:var(--rojo)}th.desc::after{content:" ▼";font-size:10px;color:var(--rojo)}
+td{padding:8px 10px;border-bottom:1px solid var(--borde);vertical-align:middle}
+tr:hover td{background:var(--fila)}
+td.num,th.num{text-align:right;white-space:nowrap}
+td img{width:40px;height:40px;object-fit:cover;border-radius:8px;background:var(--fila);display:block}
+td.prod{min-width:220px}td.prod a{text-decoration:none;font-weight:500}td.prod a:hover{color:var(--rojo);text-decoration:underline}
+.tag{display:inline-block;background:var(--fila);border-radius:6px;padding:1px 6px;margin:1px;font-size:11.5px;white-space:nowrap}
+.up{color:var(--sube);font-weight:600}.down{color:var(--baja);font-weight:600}.mut{color:var(--sub)}
+.pill{display:inline-block;padding:2px 8px;border-radius:99px;font-weight:600;font-size:12px}
+.pill.up{background:var(--sube-bg)}.pill.down{background:var(--baja-bg)}
+.pag{display:flex;gap:6px;justify-content:center;margin-top:12px;align-items:center;color:var(--sub);font-size:13px}
+.paises{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;align-items:center}
+.paises small{color:var(--sub);margin:0 4px 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.05em}
+.paises button{font:inherit;font-size:13px;padding:6px 12px;border-radius:99px;border:1px solid var(--borde);background:var(--card);color:var(--txt);cursor:pointer}
+.paises button.on{background:var(--rojo);border-color:var(--rojo);color:#fff}
+.paises button.vacio{opacity:.5}
+.vacio-msg{padding:30px;text-align:center;color:var(--sub)}
+.nota{font-size:13px;color:var(--sub);margin-top:18px}
+.nota summary{cursor:pointer;color:var(--txt);font-weight:500}
+.heat td.num{font-weight:600}
+.ancho{grid-column:1/-1}
+svg.sp{display:block}
+@media (max-width:600px){.barra{grid-template-columns:105px 1fr 46px;font-size:13px}h1{font-size:19px}.card{padding:14px}body{overflow-x:hidden}}
+</style>
+</head>
+<body>
+<header><div class="w">
+  <h1>Livezy <span>· Radar de producto</span></h1>
+  <div class="meta" id="meta">Cargando…</div>
+  <nav id="nav">
+    <button data-v="resumen" class="on">Resumen</button>
+    <button data-v="tendencias">Tendencias por país</button>
+    <button data-v="lanzamientos">Lanzamientos</button>
+    <button data-v="productos">Todos los productos</button>
+    <button data-v="cambios">Cambios de la semana</button>
+  </nav>
+</div></header>
+<main class="w" id="app"></main>
 
-- Tiendas leídas hoy: **43**, con 3846 productos.
-- Histórico de tiendas: **1 días** (desde 2026-10-27). Comparación semanal contra 2026-10-27.
-- Google Trends: semanas del 2021-10-24 al 2026-10-18 (actualizado 2026-10-27).
-- Cómo leerlo: el «ranking» es el orden de «más vendidos» que muestra cada tienda (1 = el que más vende). Los lanzamientos usan la fecha de alta del producto en Shopify. Google Trends es interés relativo (0-100) de cada búsqueda por separado: sirve para ver la dirección, no para comparar volúmenes entre palabras.
+<script>
+const $ = (s, el = document) => el.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MON = {US:'$', UK:'£', EU:'€'};
+const precio = (p, pa) => p == null ? '—' : (MON[pa] || '') + Number(p).toFixed(2);
+const fecha = s => s ? new Date(s + 'T12:00').toLocaleDateString('es-ES', {day:'numeric', month:'short', year:'numeric'}) : '—';
+const pctTxt = v => v == null ? '<span class="mut">—</span>' : `<span class="pill ${v > 0 ? 'up' : v < 0 ? 'down' : ''}">${v > 0 ? '+' : ''}${v} %</span>`;
+const AR = {'كرياتين': 'creatina', 'مغنيسيوم': 'magnesio', 'كولاجين': 'colágeno', 'فيتامين د': 'vitamina D', 'اشواغندا': 'ashwagandha', 'جلوتاثيون': 'glutatión', 'بروتين': 'proteína'};
+const palabra = p => AR[p] ? `${esc(p)} <span class="mut">(${AR[p]})</span>` : esc(p);
+const num = n => n.toLocaleString('es-ES', {useGrouping: 'always'});
+const GOLFO = ['SA','AE','KW','QA','BH','OM','EG'], OESTE = ['US','GB','ES','DE','FR'];
+let D, vista = 'resumen', zona = 'SA';
 
-## 1. Qué se está lanzando (últimos 90 días)
+function spark(v, w = 120, h = 28) {
+  if (!v || !v.length) return '';
+  const max = Math.max(...v, 1), st = w / (v.length - 1);
+  const pts = v.map((y, i) => `${(i * st).toFixed(1)},${(h - 2 - (y / max) * (h - 4)).toFixed(1)}`).join(' ');
+  return `<svg class="sp" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline fill="none" stroke="var(--rojo)" stroke-width="1.5" points="${pts}"/></svg>`;
+}
 
-297 productos nuevos en 34 tiendas.
+// ---------- tabla tipo Excel ----------
+function tabla(el, {filas, cols, filtros = [], orden, porPagina = 100, csv}) {
+  const st = {q: '', f: {}, orden: orden || null, pag: 0};
+  el.innerHTML = `<div class="bar"><input type="search" placeholder="Buscar…">${filtros.map((f, i) => f.tipo === 'check'
+      ? `<label><input type="checkbox" data-i="${i}"> ${f.nombre}</label>`
+      : `<select data-i="${i}"><option value="">${f.nombre}: todos</option>${f.opciones.map(o => `<option>${esc(o)}</option>`).join('')}</select>`).join('')}
+    ${csv ? '<button class="btn" data-csv>Descargar Excel (CSV)</button>' : ''}<span class="n"></span></div>
+    <div class="tabla"><table><thead><tr>${cols.map((c, i) => `<th data-i="${i}" class="${c.num ? 'num' : ''}">${c.t}</th>`).join('')}</tr></thead><tbody></tbody></table></div>
+    <div class="pag"></div>`;
+  const filtrar = () => {
+    const q = st.q.toLowerCase();
+    let r = filas.filter(x => (!q || cols.some(c => String(c.texto ? c.texto(x) : c.v(x) ?? '').toLowerCase().includes(q)))
+      && filtros.every((f, i) => !st.f[i] || f.ok(x, st.f[i])));
+    if (st.orden) {
+      const [i, dir] = st.orden, c = cols[i];
+      r = r.slice().sort((a, b) => {
+        const va = c.v(a), vb = c.v(b);
+        if (va == null || va === '') return 1; if (vb == null || vb === '') return -1;
+        return (typeof va === 'number' ? va - vb : String(va).localeCompare(String(vb), 'es')) * dir;
+      });
+    }
+    return r;
+  };
+  const pintar = () => {
+    const r = filtrar(), np = Math.max(1, Math.ceil(r.length / porPagina));
+    st.pag = Math.min(st.pag, np - 1);
+    $('tbody', el).innerHTML = r.slice(st.pag * porPagina, (st.pag + 1) * porPagina)
+      .map(x => `<tr>${cols.map(c => `<td class="${c.num ? 'num' : ''} ${c.cls || ''}">${c.h ? c.h(x) : esc(c.v(x) ?? '—')}</td>`).join('')}</tr>`).join('')
+      || `<tr><td colspan="${cols.length}" class="vacio-msg">No hay nada con estos filtros.</td></tr>`;
+    $('.n', el).textContent = `${num(r.length)} filas`;
+    el.querySelectorAll('th').forEach((th, i) => th.className = (cols[i].num ? 'num ' : '') + (st.orden && st.orden[0] === i ? (st.orden[1] > 0 ? 'asc' : 'desc') : ''));
+    $('.pag', el).innerHTML = np > 1 ? `<button class="btn" ${st.pag ? '' : 'disabled'} data-p="-1">← Anterior</button> Página ${st.pag + 1} de ${np} <button class="btn" ${st.pag < np - 1 ? '' : 'disabled'} data-p="1">Siguiente →</button>` : '';
+  };
+  $('input[type=search]', el).oninput = e => { st.q = e.target.value; st.pag = 0; pintar(); };
+  el.querySelectorAll('.bar select, .bar input[type=checkbox]').forEach(s => s.onchange = e => {
+    st.f[s.dataset.i] = s.type === 'checkbox' ? s.checked : s.value; st.pag = 0; pintar(); });
+  el.querySelectorAll('th').forEach(th => th.onclick = () => {
+    const i = +th.dataset.i, c = cols[i];
+    st.orden = st.orden && st.orden[0] === i ? [i, -st.orden[1]] : [i, c.num ? -1 : 1]; pintar(); });
+  $('.pag', el).onclick = e => { if (e.target.dataset.p) { st.pag += +e.target.dataset.p; pintar(); el.scrollIntoView({behavior: 'smooth'}); } };
+  if (csv) $('[data-csv]', el).onclick = () => {
+    const r = filtrar(), sep = ';', cel = s => `"${String(s ?? '').replace(/"/g, '""')}"`;
+    const txt = [cols.filter(c => !c.sinCsv).map(c => cel(c.t)).join(sep)]
+      .concat(r.map(x => cols.filter(c => !c.sinCsv).map(c => cel(c.v(x))).join(sep))).join('\n');
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['﻿' + txt], {type: 'text/csv'})); a.download = `radar-livezy-${csv}-${D.fecha}.csv`; a.click();
+  };
+  el.preset = (i, v) => { const s = el.querySelector(`.bar select[data-i="${i}"]`); s.value = v; st.f[i] = v; st.pag = 0; pintar(); };
+  pintar();
+  return el;
+}
 
-| Ingrediente / necesidad | Lanzamientos | Tiendas distintas |
-|---|---|---|
-| Probióticos / digestión | 25 | 9 |
-| Energía / cafeína | 23 | 9 |
-| Proteína | 17 | 6 |
-| Peso / metabolismo | 14 | 3 |
-| L-teanina / foco | 13 | 6 |
-| Electrolitos | 12 | 5 |
-| Menopausia / hormonas | 11 | 4 |
-| Setas funcionales | 11 | 4 |
-| Sueño / melatonina | 8 | 5 |
-| Estrés / ánimo | 8 | 4 |
-| Creatina | 8 | 7 |
-| Piel / belleza | 8 | 6 |
-| Pelo / biotina | 5 | 3 |
-| Magnesio | 5 | 3 |
-| Libido / hombre | 4 | 3 |
-| Greens / superalimentos | 4 | 4 |
-| Ashwagandha | 4 | 1 |
-| Vinagre de manzana | 4 | 1 |
-| Glutatión | 3 | 2 |
-| Inmunidad | 3 | 3 |
+const opciones = (arr) => [...new Set(arr.flat().filter(Boolean))].sort((a, b) => a.localeCompare(b, 'es'));
+function colsProducto() {
+  return [
+    {t: '', v: () => null, h: x => x.i ? `<img loading="lazy" src="${esc(x.i)}" alt="">` : '', sinCsv: true},
+    {t: 'Producto', v: x => x.n, cls: 'prod', h: x => `<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.n)}</a>${x.nuevo ? ' <span class="tag" style="color:var(--rojo)">nuevo</span>' : ''}`},
+    {t: 'Tienda', v: x => x.t},
+    {t: 'País', v: x => x.pa},
+    {t: 'Ingredientes', v: x => x.ing.join(', '), h: x => x.ing.map(i => `<span class="tag">${esc(i)}</span>`).join('') || '<span class="mut">—</span>'},
+    {t: 'Formato', v: x => x.fmt.join(', '), h: x => x.fmt.map(i => `<span class="tag">${esc(i)}</span>`).join('') || '<span class="mut">—</span>'},
+    {t: 'Precio', num: 1, v: x => x.p, h: x => precio(x.p, x.pa)},
+    {t: 'Descuento', num: 1, v: x => x.d, h: x => x.d ? `<span class="down">-${x.d} %</span>` : '<span class="mut">—</span>'},
+    {t: 'Puesto en ventas', num: 1, v: x => x.r, h: x => x.r ? `${x.r}${x.ra && x.ra !== x.r ? ` <span class="${x.ra > x.r ? 'up' : 'down'}">${x.ra > x.r ? '↑' : '↓'}${Math.abs(x.ra - x.r)}</span>` : ''}` : '<span class="mut">—</span>'},
+    {t: 'Stock', v: x => x.s ? 'Sí' : 'Agotado', h: x => x.s ? 'Sí' : '<span class="down">Agotado</span>'},
+    {t: 'Alta', num: 1, v: x => x.c, h: x => fecha(x.c)},
+  ];
+}
+function filtrosProducto(extra = []) {
+  return [
+    {nombre: 'Ingrediente', opciones: opciones(D.productos.map(x => x.ing)), ok: (x, v) => x.ing.includes(v)},
+    {nombre: 'Formato', opciones: opciones(D.productos.map(x => x.fmt)), ok: (x, v) => x.fmt.includes(v)},
+    {nombre: 'Tienda', opciones: opciones(D.productos.map(x => x.t)), ok: (x, v) => x.t === v},
+    {nombre: 'País de la tienda', opciones: opciones(D.productos.map(x => x.pa)), ok: (x, v) => x.pa === v},
+    ...extra,
+  ];
+}
+const hace = n => new Date(Date.parse(D.fecha) - n * 864e5).toISOString().slice(0, 10);
 
-| Formato | Lanzamientos |
-|---|---|
-| Sticks / sobres | 16 |
-| Gominolas | 13 |
-| Cápsulas | 12 |
-| Bebida / shot | 5 |
-| Tiras orales | 5 |
-| Polvo | 4 |
-| Barritas / snacks | 3 |
-| Comprimidos | 3 |
-| Gotas / líquido | 1 |
+// ---------- vistas ----------
+const V = {};
+V.resumen = app => {
+  const n90 = D.productos.filter(x => x.c && x.c >= hace(90));
+  const cuenta = (lista, campo) => {
+    const m = {}; lista.forEach(x => x[campo].forEach(k => { (m[k] ||= {n: 0, t: new Set()}).n++; m[k].t.add(x.t); }));
+    return Object.entries(m).sort((a, b) => b[1].n - a[1].n);
+  };
+  const ing = cuenta(n90, 'ing').slice(0, 10), fmt = cuenta(n90, 'fmt');
+  const barras = (l, tipo) => { const max = l[0]?.[1].n || 1; return l.map(([k, o]) =>
+    `<div class="barra" data-${tipo}="${esc(k)}" title="Ver estos lanzamientos"><span>${esc(k)}</span><div class="b"><i style="width:${o.n / max * 100}%"></i></div><small>${o.n}${tipo === 'ing' ? ` · ${o.t.size}t` : ''}</small></div>`).join(''); };
+  const z = D.tendencias.SA ? 'SA' : Object.keys(D.tendencias).find(k => Object.keys(D.tendencias[k]).length);
+  const suben = Object.entries(D.tendencias[z] || {}).filter(([, t]) => t.da != null).sort((a, b) => b[1].da - a[1].da).slice(0, 8);
+  const bo = (D.relacionadas.SA || []).concat(D.relacionadas.AE || []).filter(r => r.v === 'Breakout');
+  const boU = [...new Map(bo.map(r => [r.q, r])).values()].filter(r => !/near me/i.test(r.q)).slice(0, 48);
+  const nSuben = Object.values(D.tendencias.SA || {}).filter(t => t.da > 15).length;
+  app.innerHTML = `
+  <div class="grid kpis">
+    <div class="card kpi"><b>${D.tiendas.filter(t => t.n).length}</b><span>tiendas de la competencia seguidas a diario</span></div>
+    <div class="card kpi"><b>${num(D.productos.length)}</b><span>productos con precio, stock y ventas</span></div>
+    <div class="card kpi"><b>${n90.length}</b><span>lanzamientos en los últimos 90 días</span></div>
+    <div class="card kpi"><b>${nSuben}</b><span>búsquedas que suben más de un 15 % en Arabia Saudí frente al año pasado</span></div>
+  </div>
+  <div class="grid dos" style="margin-top:16px">
+    <div class="card"><h3>Qué está lanzando la competencia</h3><p class="s">Ingredientes de los productos nuevos de los últimos 90 días («t» = tiendas distintas). Pulsa uno para ver los productos.</p>${barras(ing, 'ing')}</div>
+    <div class="card"><h3>En qué formato</h3><p class="s">Formato de esos mismos lanzamientos.</p>${barras(fmt, 'fmt')}</div>
+    <div class="card"><h3>Lo que más sube en ${esc(D.zonas[z])}</h3><p class="s">Interés en Google en las últimas 12 semanas frente a las mismas semanas del año pasado.</p>
+      <table>${suben.map(([p, t]) => `<tr><td>${palabra(p)}</td><td>${spark(t.v.slice(-52), 110, 24)}</td><td class="num">${pctTxt(t.da)}</td></tr>`).join('')}</table>
+      <p class="s" style="margin-top:10px"><a href="#" data-ir="tendencias">Ver todos los países →</a></p></div>
+    <div class="card ancho"><h3>Búsquedas disparadas en Arabia y Emiratos</h3><p class="s">Búsquedas que han crecido más de un 5000 % en los últimos meses. Aquí suelen salir los productos nuevos antes que en las tiendas.</p>
+      <div class="chips">${boU.map(r => `<span class="chip bo" title="relacionada con ${esc(r.p)}">${esc(r.q)}</span>`).join('') || '<span class="mut">Sin datos todavía.</span>'}</div></div>
+  </div>
+  <details class="nota"><summary>Cómo leer el radar</summary>
+    <p>Cada día a las 08:00 de Arabia se leen ${D.tiendas.length} tiendas de suplementos: catálogo, precios, stock y su orden de «más vendidos» (puesto 1 = el que más vende de esa tienda). Los lanzamientos usan la fecha de alta del producto en la tienda.</p>
+    <p>Google Trends da el interés relativo (0-100) de cada búsqueda por separado: sirve para ver si sube o baja, no para comparar volúmenes entre búsquedas distintas. Cada país se actualiza cada 6 días.</p>
+    <p>Histórico de tiendas: ${D.dias} día${D.dias > 1 ? 's' : ''} (desde ${fecha(D.desde)}). Los cambios de la semana y las subidas en ventas aparecen cuando hay al menos 7 días para comparar.</p></details>`;
+  app.querySelectorAll('[data-ing],[data-fmt]').forEach(b => b.onclick = () => ir('lanzamientos', b.dataset.ing ? [0, b.dataset.ing] : [1, b.dataset.fmt]));
+  $('[data-ir]', app).onclick = e => { e.preventDefault(); ir('tendencias'); };
+};
 
-### Lanzamientos de los últimos 30 días
+V.lanzamientos = (app, preset) => {
+  app.innerHTML = '<div class="card" style="margin-bottom:14px"><h3>Lanzamientos de la competencia</h3><p class="s" style="margin:0">Productos dados de alta en el periodo elegido. Pulsa en una columna para ordenar; vuelve a pulsar para invertir el orden.</p></div><div id="t"></div>';
+  const periodos = {'Últimos 30 días': 30, 'Últimos 90 días': 90, 'Últimos 6 meses': 180, 'Último año': 365};
+  const t = tabla($('#t', app), {
+    filas: D.productos.filter(x => x.c && x.c >= hace(365)), cols: colsProducto(), csv: 'lanzamientos', orden: [10, -1],
+    filtros: filtrosProducto([{nombre: 'Periodo', opciones: Object.keys(periodos), ok: (x, v) => x.c >= hace(periodos[v])}]),
+  });
+  t.preset(4, 'Últimos 90 días');
+  if (preset) t.preset(...preset);
+};
 
-| Fecha | Tienda | Producto | Precio | Ranking |
-|---|---|---|---|---|
-| 2026-10-27 | wearefeel.com | [Feel Pro Menopause - one-time](https://wearefeel.com/products/feel-pro-menopause-one-time) | 5.0 | — |
-| 2026-10-26 | us.foursigmatic.com | [Protein &amp; Creatine Matcha](https://us.foursigmatic.com/products/protein-creatine-matcha) | 30.0 | — |
-| 2026-10-26 | us.foursigmatic.com | [Gut Health Ground Coffee (Medium Roast)](https://us.foursigmatic.com/products/gut-health-ground-coffee-medium-roast) | 20.0 | — |
-| 2026-10-22 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-13) | 79.99 | 68 |
-| 2026-10-21 | elmandrye.com | [Glycine capsules](https://elmandrye.com/products/glycine-capsules) | 69.99 | 69 |
-| 2026-10-20 | arrae.com | [Clear Protein+ Lemon Lime](https://arrae.com/products/clear-protein-lemon-lime) | 59.0 | — |
-| 2026-10-20 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-12) | 79.99 | — |
-| 2026-10-20 | shopbeam.com | [Shawn’s Exclusive: Mom &amp; Me Bundle](https://shopbeam.com/products/shawn-s-exclusive-mom-me-bundle) | 114.99 | 62 |
-| 2026-10-19 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-11) | 79.99 | — |
-| 2026-10-19 | ryzesuperfoods.com | [Wooden Jar Replacement](https://ryzesuperfoods.com/products/wooden-jar-replacement) | 0.0 | — |
-| 2026-10-18 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-10) | 74.99 | — |
-| 2026-10-18 | lairdsuperfood.com | [PERFORM Instant Coffee - Sticks](https://lairdsuperfood.com/products/perform-instant-coffee-sticks) | 9.99 | — |
-| 2026-10-18 | lairdsuperfood.com | [DIGEST Instant Coffee - Sticks](https://lairdsuperfood.com/products/digest-instant-coffee-sticks) | 9.99 | — |
-| 2026-10-18 | lairdsuperfood.com | [FOCUS Instant Coffee - Sticks](https://lairdsuperfood.com/products/focus-instant-coffee-sticks) | 9.99 | — |
-| 2026-10-17 | elmandrye.com | [Bromelain](https://elmandrye.com/products/bromelain) | 69.99 | — |
-| 2026-10-16 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-9) | 79.99 | — |
-| 2026-10-16 | transparentlabs.com | [David Laid Bulk Pre-Workout](https://transparentlabs.com/products/david-laid-pre-workout) | 44.99 | — |
-| 2026-10-15 | elmandrye.com | [Monoamine support](https://elmandrye.com/products/monoamine-support) | 74.99 | — |
-| 2026-10-14 | elmandrye.com | [Setria glutathione](https://elmandrye.com/products/setria-glutathione) | 79.99 | — |
-| 2026-10-14 | lairdsuperfood.com | [Mushroom Instant Coffee](https://lairdsuperfood.com/products/mushroom-instant-coffee) | 24.99 | — |
-| 2026-10-14 | vitabiotics.com | [Ultra Vitamin D 1000IU Tablets Bundle](https://vitabiotics.com/products/ultra-vitamin-d-1000iu-tablets-bundle) | 12.3 | — |
-| 2026-10-13 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-8) | 79.99 | — |
-| 2026-10-13 | goli.com | [Power Trio](https://goli.com/products/daily-essentials-3-pack-bundle) | 39.98 | — |
-| 2026-10-13 | goli.com | [Power Trio 6 Pack](https://goli.com/products/power-trio-6-pack) | 74.98 | — |
-| 2026-10-13 | spacegoods.com | [day + night starter kit](https://spacegoods.com/products/day-sleep-starter-kit) | 79.0 | 20 |
-| 2026-10-13 | vitabiotics.com | [Ultra Bilberry, Lutein &amp; Zeaxanthin Tablets Bundle](https://vitabiotics.com/products/ultra-bilberry-lutein-zeaxanthin-tablets-bundle) | 15.92 | — |
-| 2026-10-13 | vitabiotics.com | [Ultra Omega-3 High Purity Fish Oil Capsules Bundle](https://vitabiotics.com/products/ultra-omega-3-high-purity-fish-oil-capsules-bundle) | 16.88 | — |
-| 2026-10-12 | elmandrye.com | [Adenosylcobalamin B12](https://elmandrye.com/products/adenosylcobalamin-b12) | 74.99 | — |
-| 2026-10-12 | ryzesuperfoods.com | [FREE Latte Sticks](https://ryzesuperfoods.com/products/free-latte-sticks-ube) | 0.0 | — |
-| 2026-10-11 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-7) | 79.99 | — |
-| 2026-10-10 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-6) | 79.99 | — |
-| 2026-10-09 | arrae.com | [Clear Protein+ 9ct Variety Sample Pack](https://arrae.com/products/clear-protein-variety-pack-samples) | 0.0 | — |
-| 2026-10-09 | arrae.com | [Free Gift | Bloat Capsules (40 Count)](https://arrae.com/products/free-gift-bloat-capsules-40) | 0.0 | 12 |
-| 2026-10-09 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-5) | 79.99 | — |
-| 2026-10-08 | elmandrye.com | [Tongkat ali eurycomanone](https://elmandrye.com/products/tongkat-ali-eurycomanone) | 74.99 | — |
-| 2026-10-08 | ryzesuperfoods.com | [Daytime RYZE System Dark Roast](https://ryzesuperfoods.com/products/daytime-ryze-system-dark-roast) | 80.0 | — |
-| 2026-10-08 | ryzesuperfoods.com | [Day + Night RYZE System Dark Roast](https://ryzesuperfoods.com/products/day-night-ryze-system-dark-roast) | 160.0 | — |
-| 2026-10-08 | ryzesuperfoods.com | [Complete RYZE System Dark Roast](https://ryzesuperfoods.com/products/complete-ryze-system-dark-roast) | 160.0 | — |
-| 2026-10-08 | spacegoods.com | [sleep+ magnesium](https://spacegoods.com/products/sleep-plus) | 39.0 | 22 |
-| 2026-10-07 | cellucor.com | [C4 Sport® Pre-Workout Cereal Killer](https://cellucor.com/products/c4-sport-pre-workout-cereal-killer) | 21.99 | — |
-| 2026-10-07 | elmandrye.com | [Maqui berry delphinol](https://elmandrye.com/products/maqui-berry-delphinol) | 79.99 | — |
-| 2026-10-07 | lemmelive.com | [Maëlys Get Dreamy](https://lemmelive.com/products/maelys-get-dreamy) | 0.0 | — |
-| 2026-10-06 | bloomnu.com | [Crisp Apple Lovers Trio](https://bloomnu.com/products/crisp-apple-lovers-trio) | 54.42 | 26 |
-| 2026-10-06 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-4) | 79.99 | — |
-| 2026-10-05 | cellucor.com | [Cellucor Creatine Stick Packs](https://cellucor.com/products/creatine-stick-packs) | 9.99 | — |
-| 2026-10-05 | elmandrye.com | [Dihydroberberine](https://elmandrye.com/products/dihydroberberine) | 79.99 | — |
-| 2026-10-05 | shopbeam.com | [Sinful Sweets](https://shopbeam.com/products/sinful-sweets) | 74.97 | 56 |
-| 2026-10-05 | shopbeam.com | [Sour Spirits](https://shopbeam.com/products/sour-spirits) | 77.48 | 60 |
-| 2026-10-05 | shopbeam.com | [Forbidden Fruits](https://shopbeam.com/products/forbidden-fruits) | 77.48 | 59 |
-| 2026-10-04 | elmandrye.com | [Liver detox support](https://elmandrye.com/products/liver-detox-support-1) | 79.99 | — |
-| 2026-10-03 | elmandrye.com | [Liver support complex](https://elmandrye.com/products/liver-support-complex-3) | 74.99 | — |
-| 2026-10-02 | elmandrye.com | [Reishi triterpenes](https://elmandrye.com/products/reishi-triterpenes) | 79.99 | — |
-| 2026-10-02 | ryzesuperfoods.com | [Daytime RYZE System](https://ryzesuperfoods.com/products/daytime-ryze-system) | 80.0 | — |
-| 2026-10-02 | ryzesuperfoods.com | [Day + Night RYZE System](https://ryzesuperfoods.com/products/day-night-ryze-system) | 160.0 | — |
-| 2026-10-02 | ryzesuperfoods.com | [Complete RYZE System](https://ryzesuperfoods.com/products/complete-ryze-system) | 160.0 | — |
-| 2026-10-02 | spacegoods.com | [rainbow dust - starter kit (sachet box)](https://spacegoods.com/products/rainbow-dust-starter-kit-crm-sachet-box) | 58.0 | 21 |
-| 2026-09-30 | gruns.co | [Electrolyte Blends Variety Pack](https://gruns.co/products/electrolyte-blends-variety-pack) | 75.88 | — |
-| 2026-09-30 | lairdsuperfood.com | [DIGEST Instant Coffee](https://lairdsuperfood.com/products/digest-instant-coffee) | 17.99 | — |
-| 2026-09-30 | lairdsuperfood.com | [FOCUS Instant Coffee](https://lairdsuperfood.com/products/focus-instant-coffee) | 17.99 | — |
-| 2026-09-30 | transparentlabs.com | [Protocol Pack](https://transparentlabs.com/products/protocol-pack) | 134.99 | — |
+V.productos = app => {
+  app.innerHTML = '<div class="card" style="margin-bottom:14px"><h3>Todos los productos</h3><p class="s" style="margin:0">El catálogo entero de las tiendas que seguimos. Ordena por «Puesto en ventas» para ver los más vendidos de cada tienda, o filtra por ingrediente para comparar precios.</p></div><div id="t"></div>';
+  tabla($('#t', app), {
+    filas: D.productos, cols: colsProducto(), csv: 'productos', orden: [8, 1],
+    filtros: filtrosProducto([
+      {nombre: 'Solo con puesto en ventas', tipo: 'check', ok: x => x.r},
+      {nombre: 'Solo en oferta', tipo: 'check', ok: x => x.d},
+      {nombre: 'Solo agotados', tipo: 'check', ok: x => !x.s},
+    ]),
+  });
+};
 
-## 2. Más vendidos por tienda (top 5) y cambio de puesto en la semana
+V.cambios = app => {
+  if (!D.comparado) {
+    const d = new Date(Date.parse(D.desde) + 7 * 864e5).toISOString().slice(0, 10);
+    app.innerHTML = `<div class="card vacio-msg"><h3>Todavía no hay una semana de datos</h3><p>El radar empezó el ${fecha(D.desde)}. A partir del ${fecha(d)} aquí saldrán los productos nuevos, los retirados, los cambios de precio y los que suben en ventas.</p></div>`;
+    return;
+  }
+  app.innerHTML = `<div class="card" style="margin-bottom:14px"><h3>Cambios desde el ${fecha(D.comparado)}</h3><p class="s" style="margin:0">Lo que ha cambiado en las tiendas en la última semana.</p></div><div id="t"></div>`;
+  const pa = Object.fromEntries(D.tiendas.map(t => [t.t, t.pa]));
+  tabla($('#t', app), {
+    filas: D.cambios, csv: 'cambios', orden: [0, 1],
+    cols: [
+      {t: 'Qué', v: x => x.tipo, h: x => `<span class="${/Sube en|Nuevo|Baja de/.test(x.tipo) ? 'up' : 'down'}">${esc(x.tipo)}</span>`},
+      {t: 'Producto', v: x => x.n, cls: 'prod', h: x => `<a href="${esc(x.u)}" target="_blank" rel="noopener">${esc(x.n)}</a>`},
+      {t: 'Tienda', v: x => x.t},
+      {t: 'Antes', num: 1, v: x => x.antes, h: x => x.tipo === 'Sube en ventas' ? `puesto ${x.antes}` : precio(x.antes, pa[x.t])},
+      {t: 'Ahora', num: 1, v: x => x.ahora, h: x => x.tipo === 'Sube en ventas' ? `puesto ${x.ahora}` : precio(x.ahora, pa[x.t])},
+    ],
+    filtros: [{nombre: 'Tipo', opciones: opciones(D.cambios.map(x => x.tipo)), ok: (x, v) => x.tipo === v},
+              {nombre: 'Tienda', opciones: opciones(D.cambios.map(x => x.t)), ok: (x, v) => x.t === v}],
+  });
+};
 
-- **arrae.com**: 1. [Clear Protein+](https://arrae.com/products/clear-protein) · 2. [Arrae Clear Protein+ Raspberry Yuzu 7ct](https://arrae.com/products/arrae-clear-protein-raspberry-yuzu-14-count-tiktok) · 3. [Clear Protein+ (Legacy - 20ct)](https://arrae.com/products/clear-protein-raspberry-yuzu-1-time-purchase) · 4. [Mini Bloat](https://arrae.com/products/mini-bloat) · 5. [Arrae Bloat Gummy Peach Lemon (28 Count)](https://arrae.com/products/arrae-bloat-gummy-peach-lemon-28-count)
-- **bioptimizers.com**: 1. [From Sick to Superhuman](https://bioptimizers.com/products/from-sick-to-superhuman) · 2. [kApex](https://bioptimizers.com/products/kapex) · 3. [Para Guardian](https://bioptimizers.com/products/para-guardian) · 4. [The Ultimate Carnivore Cookbook](https://bioptimizers.com/products/the-ultimate-carnivore-cookbook) · 5. [Herbal Power Flush](https://bioptimizers.com/products/herbal-power-flush)
-- **bloomnu.com**: 1. [Whey Isolate Protein](https://bloomnu.com/products/protein) · 2. [Sparkling Energy Gift](https://bloomnu.com/products/ab918034) · 3. [July Beverage Gift](https://bloomnu.com/products/july-beverage-gift) · 4. [Hormone Health Intro Bundle](https://bloomnu.com/products/hormone-health-intro-bundle) · 5. [July Nutrition Gift](https://bloomnu.com/products/june-nutrition-gift)
-- **cellucor.com**: 1. [C4 Performance Energy®](https://cellucor.com/products/c4-original-carbonated) · 2. [C4 Performance Energy® x JOLLY RANCHER](https://cellucor.com/products/c4-energy-x-jolly-rancher) · 3. [C4 Performance Energy® X Popsicle®](https://cellucor.com/products/c4-performance-energy-x-popsicle) · 4. [XTEND® Original BCAA Powder](https://cellucor.com/products/xtend-original) · 5. [Cellucor® Unflavored Creatine Powder](https://cellucor.com/products/creatine-monohydrate-powder)
-- **cleanmachineonline.com**: 1. [Cell Block 80™](https://cleanmachineonline.com/products/cell-block-80) · 2. [Ahiflower® Oil](https://cleanmachineonline.com/products/ahiflower-oil) · 3. [MycelPro-1™, Unflavored  Whole Food Mycelium Protein Powder](https://cleanmachineonline.com/products/mycelpro1-unflavored) · 4. [Organic Vegan D3 (USDA Certified)](https://cleanmachineonline.com/products/vegan-d3) · 5. [N10s Clean Pre-workout](https://cleanmachineonline.com/products/n10s-pre-workout)
-- **codeage.com**: 1. [Multi Collagen Protein Powder Large](https://codeage.com/products/multi-collagen-protein-powder) · 2. [Women’s Daily Multivitamin+](https://codeage.com/products/womens-fermented-multivitamin) · 3. [Teen’s Daily Multivitamin+](https://codeage.com/products/teens-fermented-multivitamin) · 4. [Multi Collagen Peptides Powder Platinum](https://codeage.com/products/multi-collagen-protein-powder-platinum-biotin-keratin-vitamin-hyaluronicacid) · 5. [Men’s Daily Multivitamin+](https://codeage.com/products/mens-fermented-multivitamin)
-- **elmandrye.com**: 1. [Libido](https://elmandrye.com/products/sex-performance-enhancer) · 2. [Testosterone Support Gummies and Capsules](https://elmandrye.com/products/testosterone) · 3. [Slimming Gummies OR Capsules | Fat Burner](https://elmandrye.com/products/fat-burner) · 4. [Collagen Protein Powder](https://elmandrye.com/products/protein-supplement) · 5. [Daily Probiotic](https://elmandrye.com/products/probiotic-supplements)
-- **ghostlifestyle.com**: 1. [GHOST® PROTEIN BARS | CHOCOLATE CARAMEL 12 PACK](https://ghostlifestyle.com/products/ghost-protein-bars-12-pack-chocolate-caramel) · 2. [GHOST® HYDRATION STICKS 24-PACK x WELCH&#x27;S® | GRAPE](https://ghostlifestyle.com/products/ghost-hydration-sticks-24-pack-x-welchs-grape) · 3. [GHOST® WHEY PACKET | PEANUT BUTTER CEREAL MILK®](https://ghostlifestyle.com/products/ghost-whey-packet-peanut-butter-cereal-milk) · 4. [GHOST® WHEY PACKET | CHOCOLATE CHIP COOKIES](https://ghostlifestyle.com/products/ghost-whey-packet-chocolate-chip-cookies) · 5. [GHOST® WHEY PACKET | CEREAL MILK®](https://ghostlifestyle.com/products/ghost-whey-packet-cereal-milk)
-- **grenade.com**: 1. [OREO White Protein Bar](https://grenade.com/products/oreo-white-protein-bar) · 2. [Protein Bar Selection Box](https://grenade.com/products/protein-bars-selection-box) · 3. [White Chocolate Salted Peanut Protein Bar](https://grenade.com/products/protein-bar-white-chocolate-salted-peanut) · 4. [Fudged Up Protein Bar](https://grenade.com/products/protein-bar-fudged-up) · 5. [Chocolate Chip Cookie Dough Protein Bar](https://grenade.com/products/protein-bar-cookie-dough)
-- **gruns.co**: 1. [Popsicle® Firecracker Grüns](https://gruns.co/products/gruns-firecracker) · 2. [Grüns Raspberry Lemonade](https://gruns.co/products/raspberry-lemonade-gruns) · 3. [Grüns Minions](https://gruns.co/products/minions-gruns) · 4. [Popsicle® Firecracker Grüns Kids](https://gruns.co/products/gruns-kids-firecracker) · 5. [Grüns Kids Raspberry Lemonade](https://gruns.co/products/raspberry-lemonade-gruns-kids)
-- **hairburst.com**: 1. [Shampoo for Longer Stronger Hair](https://hairburst.com/products/hairburst-shampoo-for-longer-stronger-hair) · 2. [Conditioner for Longer Stronger Hair](https://hairburst.com/products/conditioner-for-longer-stronger-hair) · 3. [Volume &amp; Growth Elixir](https://hairburst.com/products/hairburst-volume-growth-elixir) · 4. [Long &amp; Healthy Hair Mask](https://hairburst.com/products/long-and-healthy-hair-mask) · 5. [Chewable Hair Vitamins](https://hairburst.com/products/chewable-hair-vitamins)
-- **heights.com**: 1. [Magnesium⁺](https://heights.com/products/magnesium) · 2. [Calmer⁺](https://heights.com/products/calmer) · 3. [Hydrate⁺](https://heights.com/products/hydrate) · 4. [Hydrate⁺ Starter Pack](https://heights.com/products/hydrate-starter-pack) · 5. [Sleep⁺ Mask](https://heights.com/products/sleep-mask)
-- **lairdsuperfood.com**: 1. [Sweet &amp; Creamy Superfood Creamer®](https://lairdsuperfood.com/products/superfood-creamer-sweet-and-creamy) · 2. [Sweet &amp; Creamy with Adaptogens Superfood Creamer®](https://lairdsuperfood.com/products/superfood-creamer-sweet-and-creamy-with-adaptogens) · 3. [Organic Performance Mushrooms](https://lairdsuperfood.com/products/performance-mushrooms) · 4. [Turmeric Superfood Creamer®](https://lairdsuperfood.com/products/superfood-creamer-turmeric) · 5. [Mocha Superfood Creamer®](https://lairdsuperfood.com/products/superfood-creamer-mocha)
-- **lemmelive.com**: 1. [Lemme Play Gummies](https://lemmelive.com/products/lemme-play-gummies) · 2. [Lemme Tone Gummies](https://lemmelive.com/products/lemme-tone-gummies) · 3. [Lemme Chill Gummies](https://lemmelive.com/products/chill) · 4. [Lemme Glow Gummies](https://lemmelive.com/products/lemme-glow) · 5. [Lemme Debloat Capsules](https://lemmelive.com/products/lemme-debloat-capsules)
-- **livemomentous.com**: 1. [Whey Protein Isolate](https://livemomentous.com/products/essential-whey-protein) · 2. [Tongkat Ali](https://livemomentous.com/products/tongkat) · 3. [Multivitamin](https://livemomentous.com/products/essential-multivitamin) · 4. [Vitamin D3 5000 IU](https://livemomentous.com/products/vitamin-d3-5000-iu) · 5. [100% Plant Protein Powder](https://livemomentous.com/products/100-plant-protein-powder)
-- **lovewellness.com**: 1. [Healthy V® Vitamin](https://lovewellness.com/products/healthy-v-vitamin) · 2. [Sparkle Fiber®](https://lovewellness.com/products/sparkle-fiber) · 3. [Gut Feelings Probiotics®](https://lovewellness.com/products/gut-feelings-probiotics) · 4. [Good to Glow™](https://lovewellness.com/products/good-to-glow) · 5. [Intimate Skin Support™](https://lovewellness.com/products/intimate-skin-support)
-- **magicmind.com**: 1. [The OG Tee](https://magicmind.com/products/og-tee) · 2. [The OG Crewneck](https://magicmind.com/products/og-crewneck) · 3. [Mental Performance Shot: MAXX | 5-to-15](https://magicmind.com/products/maxx-5-pack-to-15-pack) · 4. [The OG Trucker](https://magicmind.com/products/trucker-hat) · 5. [The Golden Hour Scarf](https://magicmind.com/products/the-golden-hour-scarf)
-- **moonjuice.com**: 1. [Collagen Protect](https://moonjuice.com/products/beauty-shroom-vegan-collagen-protection) · 2. [Plump Jelly](https://moonjuice.com/products/beauty-shroom-plumping-jelly-serum) · 3. [Brain Dust](https://moonjuice.com/products/brain-dust) · 4. [Acid Potion](https://moonjuice.com/products/beauty-shroom-exfoliating-acid-potion) · 5. [Cosmic Cocoa™](https://moonjuice.com/products/cosmic-cocoa)
-- **olly.com**: 1. [Metabolism Gummy Rings](https://olly.com/products/metabolism-gummy-rings) · 2. [Women&#x27;s Multi](https://olly.com/products/womens-multi) · 3. [Lovin&#x27; Libido](https://olly.com/products/olly-lovin-libido) · 4. [Probiotic + Prebiotic](https://olly.com/products/probiotic-prebiotic) · 5. [Hello Happy](https://olly.com/products/hello-happy)
-- **organifi.com**: 1. [Glow](https://organifi.com/products/glow) · 2. [Gold](https://organifi.com/products/gold) · 3. [Gold Chocolate](https://organifi.com/products/organifi-gold-hot-chocolate) · 4. [Green Juice Travel Packs 30 ct](https://organifi.com/products/green-juice-travel-packs-30-ct) · 5. [Liver Reset](https://organifi.com/products/natural-liver-detox)
-- **ritual.com**: 1. [Men’s Multivitamin 18+](https://ritual.com/products/essential-multivitamin-for-men) · 2. [Postnatal Multivitamin](https://ritual.com/products/essential-postnatal-multivitamin) · 3. [Women’s Multivitamin 50+](https://ritual.com/products/essential-multivitamin-for-women-over-50) · 4. [Natal Choline](https://ritual.com/products/natal-choline) · 5. [Omega-3 DHA &amp; EPA](https://ritual.com/products/omega-3-dha-epa)
-- **ryzesuperfoods.com**: 1. [FREE Shipping](https://ryzesuperfoods.com/products/free-insured-shipping) · 2. [FREE Mushroom Magnet](https://ryzesuperfoods.com/products/mushroom-magnet) · 3. [FREE Spoon &amp; Scoop](https://ryzesuperfoods.com/products/free-spoon-scoop) · 4. [Mushroom Coffee Add-On (SPECIAL PRICING)](https://ryzesuperfoods.com/products/mushroom-coffee-special-pricing) · 5. [Mushroom Bracelet](https://ryzesuperfoods.com/products/mushroom-bracelet)
-- **shopbeam.com**: 1. [Collagen - 5 Servings](https://shopbeam.com/products/collagen-5-servings) · 2. [Collagen](https://shopbeam.com/products/collagen) · 3. [Beam Subscriber Gift](https://shopbeam.com/products/beam-subscriber-gift) · 4. [Creatine](https://shopbeam.com/products/beam-creatine) · 5. [Greens - 5 Servings](https://shopbeam.com/products/greens-5-servings)
-- **smartypantsvitamins.com**: 1. [Kids Plus Multi &amp; Omegas](https://smartypantsvitamins.com/products/kids-multi-and-omegas) · 2. [Teen Guy Plus Multi &amp; Omegas](https://smartypantsvitamins.com/products/teen-guy-multi-and-omegas) · 3. [Women’s Plus Multi &amp; Omegas](https://smartypantsvitamins.com/products/womens-multi-and-omegas) · 4. [Prenatal Plus Multi &amp; Omegas](https://smartypantsvitamins.com/products/prenatal-multi-and-omegas) · 5. [Kids Organic Multi &amp; Omegas](https://smartypantsvitamins.com/products/organic-kids-multi-and-omegas)
-- **spacegoods.com**: 1. [Memory + Focus Training](https://spacegoods.com/products/memory-focus-training) · 2. [rainbow dust - bulk buy](https://spacegoods.com/products/rainbow-dust-bulk-buy-offer) · 3. [Spacegoods - 3x Free sample set](https://spacegoods.com/products/spacegoods-3x-free-sample-set) · 4. [frosted fuel bottle](https://spacegoods.com/products/frosted-fuel-bottle) · 5. [creamer dust](https://spacegoods.com/products/creamer-dust)
-- **symprove.com**: 1. [Gift bundle](https://symprove.com/products/free-gift) · 2. [Symprove - Discovery Pack](https://symprove.com/products/symprove-discovery-pack)
-- **transparentlabs.com**: 1. [Greens](https://transparentlabs.com/products/greens) · 2. [ZMO](https://transparentlabs.com/products/zmo) · 3. [Krill Oil](https://transparentlabs.com/products/krill-oil) · 4. [KSM-66 Ashwagandha](https://transparentlabs.com/products/ksm-66-ashwagandha) · 5. [Magnesium Bisglycinate](https://transparentlabs.com/products/magnesium-bisglycinate)
-- **us.foursigmatic.com**: 1. [Focus Ground Coffee - Dark](https://us.foursigmatic.com/products/focus-ground-coffee-bag) · 2. [Calm Decaf Ground Coffee - Medium](https://us.foursigmatic.com/products/calm-decaf-ground-coffee-bag) · 3. [Balance Half Caf Ground Coffee - Medium](https://us.foursigmatic.com/products/balance-half-caf-ground-coffee-bag) · 4. [Gut Health Ground Coffee - Medium](https://us.foursigmatic.com/products/gut-health-ground-coffee-bag) · 5. [Focus Max High Caf Ground Coffee - Dark](https://us.foursigmatic.com/products/boost-high-caf-ground-coffee-bag)
-- **vitabiotics.com**: 1. [Wellwoman 50+](https://vitabiotics.com/products/wellwoman-50-tablets) · 2. [Wellwoman 70+](https://vitabiotics.com/products/wellwoman-70-tablets) · 3. [Perfectil Biotherapy Body Oil](https://vitabiotics.com/products/perfectil-biotherapy-body-oil) · 4. [Ultra Cod Liver Oil](https://vitabiotics.com/products/ultra-cod-liver-oil-plus-omega-3-capsules) · 5. [Ultra Red Krill Oil](https://vitabiotics.com/products/ultra-red-krill-oil)
-- **vitalproteins.com**: 1. [Marine Collagen - Unflavored](https://vitalproteins.com/products/marine-collagen-peptides) · 2. [Chocolate Collagen Peptides](https://vitalproteins.com/products/chocolate-collagen-peptides) · 3. [Vanilla Collagen Creamer](https://vitalproteins.com/products/collagen-creamer) · 4. [Beef Liver - Capsules](https://vitalproteins.com/products/beef-liver-capsules) · 5. [Matcha Collagen](https://vitalproteins.com/products/matcha-collagen-2)
-- **wildnutrition.com**: 1. [Women&#x27;s Daily Multi Nutrient](https://wildnutrition.com/products/food-grown-daily-multi-nutrient-womens) · 2. [Women&#x27;s 45+ Daily Multi Nutrient](https://wildnutrition.com/products/food-grown-daily-multi-nutrient-45-womens) · 3. [Fertility Support for Men](https://wildnutrition.com/products/food-grown-fertility-men) · 4. [Breastfeeding Support](https://wildnutrition.com/products/food-grown-breast-feeding-support) · 5. [Multi Strain Biotic](https://wildnutrition.com/products/multi-strain-biotic)
+V.tendencias = app => {
+  const hay = z => Object.keys(D.tendencias[z] || {}).length;
+  const btn = z => `<button data-z="${z}" class="${zona === z ? 'on' : ''} ${hay(z) ? '' : 'vacio'}">${esc(D.zonas[z])}</button>`;
+  app.innerHTML = `<div class="paises"><small>Golfo y Oriente Medio</small>${GOLFO.map(btn).join('')}<small>Occidente</small>${OESTE.map(btn).join('')}<small>Global</small>${btn('')}
+    <button data-z="*" class="${zona === '*' ? 'on' : ''}">Comparar países</button></div><div id="tz"></div>`;
+  app.querySelectorAll('[data-z]').forEach(b => b.onclick = () => { zona = b.dataset.z; V.tendencias(app); });
+  const cont = $('#tz', app);
+  if (zona === '*') {
+    const zs = [...GOLFO, ...OESTE, ''].filter(hay), palabras = opciones(zs.map(z => Object.keys(D.tendencias[z])));
+    cont.innerHTML = `<div class="card" style="margin-bottom:14px"><h3>Comparar países</h3><p class="s" style="margin:0">Cambio del interés en Google en las últimas 12 semanas frente a las mismas semanas del año pasado. Pulsa un país para ordenar por él.</p></div><div id="t" class="heat"></div>`;
+    tabla($('#t', cont), {
+      filas: palabras.map(p => ({p, ...Object.fromEntries(zs.map(z => [z || 'W', D.tendencias[z][p]?.da]))})), porPagina: 200,
+      cols: [{t: 'Búsqueda', v: x => x.p, h: x => palabra(x.p)}, ...zs.map(z => ({t: esc(D.zonas[z]), num: 1, v: x => x[z || 'W'], h: x => pctTxt(x[z || 'W'])}))],
+      orden: [1, -1], csv: 'paises',
+    });
+    return;
+  }
+  if (!hay(zona)) {
+    cont.innerHTML = `<div class="card vacio-msg"><h3>${esc(D.zonas[zona])}: todavía sin datos</h3><p>Se está recogiendo. Cada país se actualiza cada 6 días; vuelve en un rato o mañana.</p></div>`;
+    return;
+  }
+  const filas = Object.entries(D.tendencias[zona]).map(([p, t]) => ({p, ...t}));
+  const rel = D.relacionadas[zona] || [];
+  const porP = {}; rel.forEach(r => (porP[r.p] ||= []).push(r));
+  cont.innerHTML = `<div class="card" style="margin-bottom:14px"><h3>${esc(D.zonas[zona])}</h3><p class="s" style="margin:0">Interés en Google (0-100) de cada búsqueda. La línea son los últimos 2 años. Actualizado el ${fecha(D.zonas_act[zona])}.</p></div>
+    <div id="t"></div>
+    ${rel.length ? `<div class="card" style="margin-top:16px"><h3>Búsquedas relacionadas en auge en ${esc(D.zonas[zona])}</h3><p class="s">Lo que la gente busca junto a cada término y está creciendo. «Breakout» = más de un 5000 %.</p>
+      ${Object.entries(porP).map(([p, l]) => `<p style="margin:10px 0 4px"><b>${palabra(p)}</b></p><div class="chips">${l.map(r => `<span class="chip ${r.v === 'Breakout' ? 'bo' : ''}">${esc(r.q)} · ${esc(r.v)}</span>`).join('')}</div>`).join('')}</div>` : ''}`;
+  tabla($('#t', cont), {
+    filas, porPagina: 100, csv: 'tendencias-' + (zona || 'mundial'), orden: [4, -1],
+    cols: [
+      {t: 'Búsqueda', v: x => x.p, h: x => palabra(x.p)},
+      {t: 'Últimos 2 años', v: () => null, h: x => spark(x.v), sinCsv: true},
+      {t: 'Interés (0-100)', num: 1, v: x => x.m},
+      {t: 'vs 12 semanas antes', num: 1, v: x => x.d12, h: x => pctTxt(x.d12)},
+      {t: 'vs hace un año', num: 1, v: x => x.da, h: x => pctTxt(x.da)},
+    ],
+  });
+};
 
-## 4. Google Trends: búsquedas que suben
+function ir(v, preset) {
+  vista = v;
+  document.querySelectorAll('#nav button').forEach(b => b.classList.toggle('on', b.dataset.v === v));
+  V[v]($('#app'), preset);
+  try { localStorage.setItem('radar-vista', v); } catch (e) {}
+  history.replaceState(null, '', '#' + v);
+  scrollTo({top: 0});
+}
+document.querySelectorAll('#nav button').forEach(b => b.onclick = () => ir(b.dataset.v));
 
-Últimas 12 semanas frente a las 12 anteriores, y frente a las mismas 12 semanas del año pasado.
-
-### Arabia Saudí
-
-| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
-|---|---|---|---|
-| l-theanine | 7 | -54 % | +170 % |
-| اشواغندا | 55 | -11 % | +117 % |
-| menopause supplement | 8 | — | +54 % |
-| protein powder | 53 | -21 % | +29 % |
-| magnesium glycinate | 38 | -17 % | +26 % |
-| creatine | 45 | -19 % | +19 % |
-| كرياتين | 81 | +10 % | +11 % |
-| مغنيسيوم | 78 | -3 % | +10 % |
-| zinc | 52 | -15 % | +9 % |
-| inositol | 48 | -23 % | +7 % |
-| magnesium | 40 | -21 % | +7 % |
-| بروتين | 82 | -5 % | +5 % |
-| NAD | 46 | -15 % | +3 % |
-| vitamin d | 45 | -17 % | +1 % |
-| ashwagandha | 42 | -29 % | +0 % |
-| melatonin | 37 | -16 % | +0 % |
-| probiotics | 31 | -34 % | -1 % |
-| electrolytes | 41 | -40 % | -2 % |
-| gummies | 65 | -9 % | -4 % |
-| جلوتاثيون | 34 | -14 % | -10 % |
-| omega 3 | 47 | -19 % | -11 % |
-| glutathione | 52 | -15 % | -12 % |
-| collagen | 48 | -15 % | -13 % |
-| فيتامين د | 49 | +1 % | -15 % |
-| كولاجين | 64 | +9 % | -15 % |
-| biotin | 35 | -38 % | -26 % |
-| berberine | 31 | -45 % | -39 % |
-| shilajit | 12 | -37 % | -68 % |
-| sea moss | 1 | -59 % | -88 % |
-| GLP-1 supplement | 0 | — | — |
-| apple cider vinegar gummies | 0 | -100 % | — |
-| beef liver | 4 | -52 % | — |
-| colostrum | 8 | -64 % | — |
-| creatine gummies | 2 | — | — |
-| greens powder | 0 | — | — |
-| hair vitamins | 8 | -22 % | — |
-| iron supplement | 27 | +31 % | — |
-| kids vitamins | 2 | — | — |
-| lion&#x27;s mane | 1 | -80 % | — |
-| mushroom coffee | 16 | — | — |
-| prenatal vitamins | 8 | — | — |
-
-### Emiratos
-
-| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
-|---|---|---|---|
-| electrolytes | 65 | -17 % | +37 % |
-| magnesium glycinate | 74 | -10 % | +34 % |
-| protein powder | 75 | -13 % | +34 % |
-| creatine | 79 | -6 % | +27 % |
-| بروتين | 71 | -8 % | +20 % |
-| zinc | 70 | -7 % | +13 % |
-| NAD | 66 | +7 % | +5 % |
-| gummies | 76 | -7 % | +5 % |
-| magnesium | 78 | -7 % | +5 % |
-| omega 3 | 75 | -9 % | +5 % |
-| vitamin d | 79 | -5 % | +5 % |
-| مغنيسيوم | 52 | -15 % | +5 % |
-| melatonin | 72 | -4 % | +4 % |
-| كرياتين | 45 | -17 % | +2 % |
-| inositol | 47 | -21 % | -1 % |
-| collagen | 75 | -9 % | -5 % |
-| glutathione | 55 | -13 % | -8 % |
-| biotin | 40 | -27 % | -10 % |
-| iron supplement | 15 | -66 % | -14 % |
-| probiotics | 54 | -20 % | -14 % |
-| ashwagandha | 52 | -23 % | -17 % |
-| فيتامين د | 41 | +6 % | -18 % |
-| berberine | 45 | -18 % | -27 % |
-| كولاجين | 52 | +0 % | -28 % |
-| sea moss | 8 | +206 % | -42 % |
-| l-theanine | 2 | -87 % | -50 % |
-| shilajit | 20 | -4 % | -55 % |
-| kids vitamins | 2 | -74 % | -57 % |
-| lion&#x27;s mane | 2 | — | -59 % |
-| hair vitamins | 7 | -54 % | -63 % |
-| beef liver | 5 | -81 % | -65 % |
-| colostrum | 6 | +95 % | -68 % |
-| GLP-1 supplement | 0 | — | — |
-| apple cider vinegar gummies | 0 | -95 % | — |
-| creatine gummies | 4 | -67 % | — |
-| greens powder | 1 | — | — |
-| menopause supplement | 9 | — | — |
-| mushroom coffee | 2 | -72 % | — |
-| prenatal vitamins | 2 | -58 % | — |
-| saffron supplement | 0 | — | — |
-| اشواغندا | 9 | — | — |
-| جلوتاثيون | 1 | — | — |
-
-### Mundial
-
-| Búsqueda | Interés medio (0-100) | vs 12 semanas antes | vs hace un año |
-|---|---|---|---|
-| creatine gummies | 57 | -25 % | +20 % |
-| magnesium glycinate | 55 | -20 % | +15 % |
-| creatine | 66 | -21 % | +6 % |
-| electrolytes | 58 | -34 % | +6 % |
-| hair vitamins | 43 | -11 % | +6 % |
-| protein powder | 41 | -30 % | +5 % |
-| gummies | 50 | -21 % | +4 % |
-| NAD | 85 | -7 % | +1 % |
-| kids vitamins | 63 | -1 % | +0 % |
-| beef liver | 55 | -28 % | -1 % |
-| vitamin d | 56 | -33 % | -1 % |
-| collagen | 59 | -23 % | -2 % |
-| prenatal vitamins | 44 | -12 % | -2 % |
-| zinc | 59 | -28 % | -4 % |
-| berberine | 46 | -39 % | -5 % |
-| magnesium | 62 | -24 % | -6 % |
-| glutathione | 65 | -25 % | -7 % |
-| inositol | 57 | -18 % | -7 % |
-| omega 3 | 72 | -8 % | -7 % |
-| iron supplement | 36 | -49 % | -10 % |
-| probiotics | 49 | -36 % | -11 % |
-| melatonin | 66 | -19 % | -12 % |
-| mushroom coffee | 44 | -24 % | -12 % |
-| colostrum | 60 | -20 % | -16 % |
-| GLP-1 supplement | 33 | -39 % | -19 % |
-| biotin | 47 | -31 % | -20 % |
-| sea moss | 39 | -24 % | -26 % |
-| l-theanine | 34 | -51 % | -31 % |
-| saffron supplement | 43 | -44 % | -33 % |
-| ashwagandha | 53 | -28 % | -34 % |
-| greens powder | 12 | -61 % | -34 % |
-| menopause supplement | 30 | -46 % | -36 % |
-| apple cider vinegar gummies | 18 | -72 % | -43 % |
-| lion&#x27;s mane | 33 | -40 % | -49 % |
-| shilajit | 33 | -15 % | -54 % |
-
-### Búsquedas relacionadas en auge (2026-10-27)
-
-«Breakout» = ha crecido más de un 5000 %. Es lo más útil para descubrir productos nuevos.
-
-**Arabia Saudí**
-
-- *NAD*: glutathione (Breakout), lidl near me (Breakout), nac (Breakout), nad booster (Breakout), nad drip (+650%), nad iv (+750%), nad plus supplement (Breakout), nad supplement (+1,700%)
-- *apple cider vinegar gummies*: apple cider vinegar gummies فوائد (+90%), benefits of apple cider vinegar gummies (Breakout), tsf apple cider vinegar gummies (Breakout), when to take apple cider vinegar gummies (Breakout), yumi apple cider vinegar gummies (Breakout)
-- *ashwagandha*: ashwagandha benefits for female (Breakout), ashwagandha ksm 66 (Breakout), ashwagandha side effects for male (Breakout), does ashwagandha increase testosterone (Breakout), does ashwagandha kill emotions (Breakout), does ashwagandha make you sleepy (Breakout), goli ashwagandha (Breakout), goli ashwagandha gummies (Breakout)
-- *beef liver*: beef liver protein per 100g (Breakout), beef liver supplements (+250%), benefits of beef liver (+50%)
-- *berberine*: berberine advanced (Breakout), berberine foods (Breakout), berberine for weight loss (Breakout), berberine glucose support (Breakout), berberine phytosome (Breakout), berberine uses (Breakout), best berberine supplement (Breakout), best time to take berberine (Breakout)
-- *biotin*: avalon organics biotin b-complex thickening shampoo (Breakout), best biotin tablets for hair growth (+160%), biotin dose for hair (+140%), biotin is which vitamin (+150%), biotin plus (+160%), biotin plus 2500 mcg (+250%), biotin plus tablet (+350%), biotin which vitamin (+150%)
-- *collagen*: baby collagen glow mask (Breakout), bb lab collagen (Breakout), biodance mask collagen (Breakout), bloom collagen coffee (Breakout), hylu collagen (Breakout), karseell collagen (Breakout), karseell collagen hair mask (Breakout), medicube (Breakout)
-- *colostrum*: armra colostrum (Breakout), bovine colostrum (+300%), colostrum collector (Breakout), colostrum supplement (+60%), colostrum tablets (Breakout), cowboy colostrum (Breakout), goat colostrum (+200%), miracle moo bovine colostrum (Breakout)
-- *creatine*: applied nutrition (+1,750%), applied nutrition creatine (Breakout), creatine gummies (Breakout), creatine monohydrate capsules (Breakout), does creatine increase weight (Breakout), how many grams of creatine per day (Breakout), kevin levrone creatine (+450%), lidl near me (Breakout)
-- *creatine gummies*: applied nutrition creatine gummies (Breakout), create creatine gummies (Breakout), creatine monohydrate (Breakout), creatine monohydrate gummies (Breakout)
-- *electrolytes*: electrolysis hair removal (Breakout), electrolytes drinks homemade (Breakout), electrolytes for kids (Breakout), electrolytes sachets (Breakout), electrolytes sources (Breakout), ghost electrolytes (Breakout), homemade electrolytes (Breakout), hydralyte (Breakout)
-- *glutathione*: aishi tokyo glutathione (Breakout), aplb glutathione niacinamide (Breakout), aplb glutathione niacinamide body lotion (Breakout), codeage liposomal glutathione (Breakout), esther formula glutathione (Breakout), glutathione cysteine &amp; c (Breakout), glutathione niacinamide body lotion (Breakout), hikari glutathione (Breakout)
-- *gummies*: ashwaganda gummies (Breakout), cherry gummies (Breakout), cranberry gummies (Breakout), creatine gummies (Breakout), goli ashwagandha gummies (Breakout), lemme chill gummies (Breakout), lemme gummies (Breakout), lemme sleep gummies (Breakout)
-- *hair vitamins*: acm hair vitamins (Breakout), bali secret hair vitamins (Breakout), best hair growth vitamins (+60%), best hair vitamins for women (+60%), codeage hair vitamins (Breakout), gummy hair vitamins (+120%), hair vitamins for women (+150%), hair vitamins gummies (+60%)
-- *inositol*: berberine (Breakout), best time to take inositol (Breakout), coq10 (Breakout), d chiro inositol benefits (Breakout), inositol benefits for men (Breakout), inositol benefits for women (Breakout), inositol for insulin resistance (Breakout), inositol for weight loss (Breakout)
-- *iron supplement*: best form of iron supplement (Breakout), best iron supplement for anemia (+180%), ferritin supplement (+250%), heme iron supplement (+180%), liquid iron supplement (+400%), vitamin d (+50%)
-- *kids vitamins*: gummies vitamins for kids (Breakout), multivitamin for kids (+50%), vitamins for kids brain (+40%), vitamins pampataba for kids (+60%)
-- *l-theanine*: l-theanine 200 mg (Breakout), l-theanine 200mg (Breakout), l-theanine and caffeine (+140%), l-theanine side effects (Breakout), l-theanine فوائد (+90%), magnesium glycinate (Breakout)
-- *lion&#x27;s mane*: lion&#x27;s mane mushroom (+60%), lion&#x27;s mane mushroom powder (Breakout), lion&#x27;s mane powder (+120%), lion&#x27;s mane supplement (Breakout), lion&#x27;s mane supplement side effects (Breakout), om lion&#x27;s mane (Breakout), what is lion&#x27;s mane (Breakout)
-- *magnesium*: doctor&#x27;s best magnesium glycinate (Breakout), kal magnesium glycinate (Breakout), limitless magnesium (Breakout), magnesium bisglycinate vs glycinate (Breakout), magnesium glycenate (Breakout), magnesium glycinat (Breakout), magnesium glycinate dosage (Breakout), magnesium glycinate side effects (Breakout)
-- *magnesium glycinate*: benefits of magnesium glycinate (Breakout), best magnesium glycinate supplement (Breakout), magnesium bisglycinate (Breakout), magnesium glycinate 350 (Breakout), magnesium glycinate 400 mg (Breakout), magnesium glycinate capsules (Breakout), magnesium glycinate dosage (Breakout), magnesium glycinate foods (Breakout)
-- *melatonin*: ashwagandha (Breakout), does melatonin have side effects (Breakout), how long does it take for melatonin to kick in (Breakout), how long does melatonin last (Breakout), how long does melatonin take to kick in (Breakout), how many mg of melatonin should i take (Breakout), how much melatonin should i take (Breakout), jp melatonin (+600%)
-- *mushroom coffee*: ryze mushroom coffee (Breakout)
-- *omega 3*: ashwagandha (+250%), carlson omega 3 (+200%), does omega 3 increase weight (+130%), holista omega 3 (Breakout), limitless omega 3 (Breakout), magnesium (+250%), magnesium glycinate (+900%), nordic naturals ultimate omega (+400%)
-- *probiotics*: beauty of joseon relief sun rice probiotics (Breakout), best probiotics for gut health (Breakout), can i take probiotics every day (Breakout), dr berg probiotics (Breakout), dr. formulated probiotics (+700%), ibs symptoms (Breakout), lactobacillus rhamnosus (+200%), lidl near me (Breakout)
-- *protein powder*: applied nutrition (+350%), beef protein powder (+450%), cola protein powder (+250%), creatine monohydrate (Breakout), dunkin protein powder (Breakout), fruity pebbles protein powder (Breakout), ghost protein powder (+300%), iso 100 hydrolyzed protein powder (Breakout)
-- *sea moss*: ashwagandha (Breakout), gold sea moss gel (Breakout), good stuff sea moss gel (Breakout), honduran sea moss (Breakout), is sea moss good for you (Breakout), sea moss benefits and side effects (Breakout), sea moss benefits for men (Breakout), sea moss capsules (Breakout)
-- *shilajit*: benefits of shilajit for men (Breakout), cristallo shilajit (Breakout), hillside shilajit (Breakout), how to take shilajit (Breakout), kapiva shilajit gold (Breakout), natural shilajit (Breakout), shilajit drink (Breakout), shilajit energy drink (Breakout)
-- *vitamin d*: calcium magnesium zinc vitamin d (+200%), can i take vitamin d at night (+400%), does vitamin d deficiency cause hair loss (+180%), ferritin (+200%), magnesium (+200%), omega 3 (+100%), vitamin d 25 oh normal range (+180%), vitamin d and k2 (+550%)
-- *zinc*: berry can zinc (Breakout), best form of zinc (+400%), best zinc form (+250%), calcium magnesium zinc vitamin d (+180%), calcium magnesium zinc vitamin d3 (+250%), hindustan copper share price (Breakout), magnesium glycinate (+1,200%), wipro share price (+200%)
-- *بروتين*: beef xp بروتين (Breakout), cookie dough بروتين (Breakout), ارلا بروتين (+1,850%), ارلا بروتين بودينغ (Breakout), المراعي بروتين (+1,050%), بروتين اناناس (+2,700%), بروتين دانكن (+1,700%), بروتين كوكي دو (Breakout)
-- *جلوتاثيون*: حبوب جلوتاثيون للتبييض (+60%), شايني جلوتاثيون (+300%), فازلين جلوتاثيون (Breakout)
-- *فيتامين د*: أعراض نقص فيتامين د و b12 (+2,850%), افضل وقت لتناول فيتامين د (+190%), الوقت المناسب لتناول فيتامين د (+350%), شي يرفع فيتامين د بسرعة (+350%), طريقة استخدام فيتامين د 50000 (+250%), فوائد فيتامين د للرجال (+350%), فوائد فيتامين د للنساء (+1,100%), فيتامين د مع k2 (+2,050%)
-- *كرياتين*: abe (Breakout), الوزن المثالي (Breakout), بري ورك اوت (Breakout), كرياتين جولد (+120%), كرياتين مونوهيدرات (+60%), كرياتين مونوهيدرات كريابيور (Breakout)
-- *كولاجين*: أفضل شراب كولاجين من الصيدلية (Breakout), رون اتش كولاجين (Breakout), رون اس كولاجين (Breakout), رون جي كولاجين (Breakout), سكنلي (Breakout), كارسيل كولاجين (Breakout), كوزمازون كولاجين (Breakout), كوزمو كولاجين (Breakout)
-- *مغنيسيوم*: أفضل أنواع المغنيسيوم في الصيدليات (Breakout), اوميجا ٣ (Breakout), جليسينات المغنيسيوم (Breakout), رونزافيت (Breakout), فوائد المغنيسيوم للرجال (Breakout), فوائد مغنيسيوم ماليت (Breakout), مغنيسيوم ال ثريونات (Breakout), مغنيسيوم باي جلايسينيت (Breakout)
-
-**Emiratos**
-
-- *NAD*: nad al sheba 3 (+40%), nad al sheba mall (+750%), nad drip (+1,850%), nad iv (+850%), nad wasit (+50%), what is nad (+60%)
-- *apple cider vinegar gummies*: apple cider vinegar for weight loss (+50%), apple cider vinegar gummies فوائد (+110%), fitgum apple cider vinegar gummies (+250%), goli apple cider vinegar gummies reviews (+80%), goli apple cider vinegar gummies فوائد (+250%), how to take apple cider vinegar gummies (+70%), tsf apple cider vinegar gummies (+50%)
-- *ashwagandha*: ashwagandha bounce (Breakout), ashwagandha gummies (+1,050%), ashwagandha gummies benefits (Breakout), ashwagandha ksm-66 (+600%), benefits of ashwagandha for women (Breakout), can i take ashwagandha at night (Breakout), does ashwagandha make you sleepy (Breakout), is ashwagandha halal (Breakout)
-- *beef liver*: beef liver calories per 100g (+50%), beef liver capsules (+100%), beef liver protein (+50%), beef liver protein per 100g (Breakout), beef liver supplement (Breakout), beef liver supplements (+160%), beef liver supplements benefits (Breakout), benefits of eating beef liver (Breakout)
-- *berberine*: berberine 1000 mg (Breakout), berberine 500mg (Breakout), berberine and inositol (Breakout), berberine complex (Breakout), berberine for weight loss (Breakout), berberine herb (Breakout), berberine phytosome (Breakout), berberine powder (Breakout)
-- *biotin*: best biotin tablets for hair growth (+300%), biotin gummies (+150%), biotin gummies for hair growth (+600%), biotin hair gummies (+200%), biotin laddu (Breakout), biotin results after 1 week (Breakout), biotin tablets for hair growth (+80%), biotin tablets uses (+90%)
-- *collagen*: baby collagen glow mask (Breakout), bb lab collagen (Breakout), bioactive collagen gel (Breakout), biodance collagen mask (Breakout), health nag collagen (Breakout), karseell collagen (Breakout), medicube (Breakout), medicube collagen (Breakout)
-- *colostrum*: armra colostrum (+400%), bovine colostrum miracle moo (Breakout), colostrum benefits for adults (Breakout), colostrum collector (Breakout), colostrum for adults (Breakout), colostrum syringes (Breakout), colostrum vs breast milk (Breakout), cow colostrum milk benefits (Breakout)
-- *creatine*: anabolic creatine (+400%), applied nutrition (+500%), basix creatine (Breakout), basix pure creatine (Breakout), best creatine for men (+200%), creatine gummies (Breakout), evogen creatine (Breakout), kevin levrone creatine (Breakout)
-- *creatine gummies*: applied nutrition creatine (Breakout), best creatine gummies (Breakout), creatine monohydrate (Breakout), creatine monohydrate gummies (Breakout)
-- *electrolytes*: applied nutrition electrolytes (Breakout), does pocari sweat have electrolytes (Breakout), electrolytes بالعربي (Breakout), humantra (Breakout), humantra electrolyte (Breakout), humantra electrolytes review (Breakout), humantra electrolytes فوائد (Breakout), hydrate electrolytes (Breakout)
-- *glutathione*: chicnutrix glutathione (Breakout), cymbiotika glutathione (Breakout), derma glow with glutathione (Breakout), esther formula glutathione (Breakout), glow up glutathione (Breakout), glow up glutathione review (Breakout), glutathione gummies (Breakout), hikari glutathione (Breakout)
-- *greens powder*: athletic greens (+180%), bloom greens (Breakout), bloom powder greens (Breakout)
-- *gummies*: be bodywise gummies (Breakout), bodywise hair gummies (Breakout), bodywise magnesium gummies (Breakout), creatine gummies (Breakout), glutathione gummies (Breakout), lemme (Breakout), lemme sleep (Breakout), lemme sleep gummies (Breakout)
-- *hair vitamins*: acm hair vitamins (Breakout), baby blues hair vitamins (Breakout), best hair vitamins for women (+70%), codeage hair vitamins (Breakout), dense hair vitamins (Breakout), hair vitamins for men (+70%), hair vitamins for women (+60%), hair vitamins gummies (+80%)
-- *inositol*: berberine (+600%), berberine and inositol (Breakout), berberine vs inositol (Breakout), best myo inositol supplement (Breakout), best time to take inositol (+300%), inositol 1000 mg (Breakout), inositol benefits for women (Breakout), inositol sachet (+250%)
-- *iron supplement*: best iron supplement for women (+250%), ferritin supplement (+80%), iron bisglycinate (+700%), iron powder supplement (Breakout), magnesium supplement (+80%), now iron supplement (+170%), side effects of iron supplements (Breakout), thorne iron bisglycinate (Breakout)
-- *kids vitamins*: smarty pants kids vitamins (Breakout)
-- *l-theanine*: l-theanine 200mg (Breakout), l-theanine supplement (+250%), magnesium glycinate (Breakout)
-- *lion&#x27;s mane*: best lion&#x27;s mane supplement (Breakout), cordyceps (Breakout), dirtea lion&#x27;s mane (Breakout), does lion&#x27;s mane work (Breakout), how to cook lion&#x27;s mane mushroom (Breakout), iherb (Breakout), lion&#x27;s mane benefits for female (Breakout), lion&#x27;s mane benefits for male (Breakout)
-- *magnesium*: best magnesium glycinate (+750%), chelated magnesium glycinate (+1,650%), liposomal magnesium (+1,800%), magnesium bisglycinate (+700%), magnesium glycinate (+1,150%), magnesium glycinate benefits (+950%), magnesium glycinate side effects (+950%), magnesium glycinate sleep (+650%)
-- *magnesium glycinate*: ashwagandha (Breakout), chelated magnesium vs magnesium glycinate (Breakout), doctor&#x27;s best magnesium glycinate (Breakout), how much magnesium glycinate per day (Breakout), is magnesium glycinate safe (Breakout), magnesium glycinate 400 mg (Breakout), magnesium glycinate 400mg (Breakout), magnesium glycinate daily dose (Breakout)
-- *melatonin*: can i take 10 mg of melatonin (Breakout), how many grams of melatonin should i take (Breakout), how many melatonin pills should i take (Breakout), kids melatonin gummies (+1,050%), magnesium glycinate (Breakout), melatonin 5 mg tablet (Breakout), melatonin game (+950%), melatonin gummies for kids (+350%)
-- *omega 3*: ashwagandha (+120%), biogena omega 3 (+400%), does omega 3 increase weight (Breakout), limitless omega 3 (Breakout), magnesium (+190%), magnesium glycinate (Breakout), nordic naturals ultimate omega (+180%), nordic omega 3 (+130%)
-- *prenatal vitamins*: folic acid (+40%), nature made prenatal (+250%), prenatal vitamins for women (+500%), prenatal vitamins with folic acid (+250%), ritual prenatal (Breakout), what are prenatal vitamins (+100%), what is prenatal vitamins (+40%)
-- *probiotics*: best probiotics for gut health (+650%), biogaia probiotics baby (+500%), carbamide forte probiotics (Breakout), do probiotics help with bloating (Breakout), dog probiotics (+250%), gut health (+300%), optibac (+250%), optibac probiotics (+160%)
-- *protein powder*: clear protein powder (+600%), creatine (+100%), creatine monohydrate (+180%), creatine powder (+100%), fresubin protein powder (+500%), fruity pebbles protein powder (Breakout), ghost protein powder (+250%), iso100 protein powder (+200%)
-- *saffron supplement*: saffron supplement benefits (Breakout)
-- *sea moss*: coconut cult (Breakout), dr sebi sea moss (Breakout), honduran sea moss (Breakout), raw honduran sea moss (Breakout), raw sea moss (Breakout), sea moss benefits and side effects (Breakout), sea moss gummies (Breakout), sea moss in arabic (Breakout)
-- *shilajit*: hillside shilajit (Breakout), kapiva shilajit gold (Breakout), sea moss (Breakout), shilajit benefits for women (Breakout), shilajit energy (Breakout), shilajit energy drink (Breakout), shilajit energy drink price (Breakout), shilajit energy drink shahid anwar (Breakout)
-- *vitamin d*: 14 signs of vitamin d deficiency (+1,000%), can i take vitamin d at night (+130%), dibase vitamin d (+200%), magnesium (+120%), omega 3 (+100%), vitamin d 60000 iu (+190%), vitamin d and k2 (+600%), vitamin d gummies (+120%)
-- *zinc*: adani power share price (Breakout), best time to take zinc (+120%), cystine b6 zinc (+110%), hindustan copper share price (+170%), magnesium glycinate (+950%), magnesium supplement (+130%), omega 3 (+120%), zinc bisglycinate (+250%)
-- *بروتين*: 100 جرام دجاج كم بروتين (+650%), 100 جرام صدور دجاج كم بروتين (+400%), beef xp بروتين (Breakout), cookie dough بروتين (Breakout), بروتين المراعي (Breakout), بروتين بيف (+1,000%), بروتين كوكي دو (+600%), بروتين ندى (+500%)
-- *جلوتاثيون*: أفضل حبوب جلوتاثيون للتبييض (Breakout), حقن جلوتاثيون (+50%)
-- *فيتامين د*: أضرار فيتامين د 50000 (Breakout), أعراض نقص فيتامين b12 عند النساء (Breakout), أعراض نقص فيتامين د الحاد (Breakout), أعراض نقص فيتامين د و b12 (Breakout), أفضل وقت لتناول فيتامين د (+600%), احسن وقت لاخذ فيتامين د (Breakout), اعراض نقص فيتامين د للنساء (Breakout), جرعة فيتامين د اليومية (+550%)
-- *كرياتين*: creapure (Breakout), افضل نوع كرياتين للتضخيم (Breakout), الكرياتين والانتصاب (Breakout), فوائد الكرياتين (+90%), كرياتين للعضلات (+170%), كرياتين مونوهيدرات (+40%), واي بروتين (+90%)
-- *كولاجين*: la belle كولاجين (Breakout), nem كولاجين (Breakout), افضل كولاجين للعظام (Breakout), بانثوفيل كولاجين سيروم (Breakout), فوائد الكولاجين للنساء (Breakout), كارسيل كولاجين (Breakout), كارسيل كولاجين للشعر (Breakout), كوزما كولاجين (Breakout)
-- *مغنيسيوم*: magnesium glycinate (Breakout), أعراض نقص مغنيسيوم (Breakout), اعراض نقص مغنيسيوم (Breakout), افضل مغنيسيوم للنوم (Breakout), فوائد حبوب المغنيسيوم (Breakout), فوائد مغنيسيوم جلايسينيت (Breakout), مغنيسيوم اوكسايد (Breakout), مغنيسيوم بيسجليسينات (Breakout)
-
-</pre>
-<script>const t=document.getElementById('md').textContent;document.getElementById('c').innerHTML=window.marked?marked.parse(t).replace(/<table>/g,'<div class="w"><table>').replace(/<\/table>/g,'</table></div>'):'<pre>'+t+'</pre>';</script>
-</body></html>
+fetch('datos.json?' + Date.now()).then(r => r.json()).then(d => {
+  D = d;
+  $('#meta').textContent = `Actualizado el ${fecha(D.fecha)} · ${D.tiendas.filter(t => t.n).length} tiendas · ${num(D.productos.length)} productos · ${Object.values(D.tendencias).filter(t => Object.keys(t).length).length} países en Google Trends`;
+  let v = location.hash.slice(1); if (!V[v]) try { v = localStorage.getItem('radar-vista'); } catch (e) {}
+  ir(V[v] ? v : 'resumen');
+}).catch(() => { $('#app').innerHTML = '<div class="card vacio-msg">No se han podido cargar los datos.</div>'; });
+</script>
+</body>
+</html>
